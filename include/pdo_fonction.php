@@ -42,4 +42,15 @@ function fun_get_all_ami ($co) {
 	return $requete->fetchAll();
 }
 
+/**
+	-> Permet d'inscrire un ami et ses convives
+	-> pour un diner voulu dans "participer" 
+ */
+function fun_set_inscrire_diner ($co, $numAmi, $numDiner, $nbInvite) {
+	$requete = $co->query('INSERT INTO participer VALUES(:NumAmi, :NumDiner, :NbInvite)');
+	$requete->execute(array(
+							"NumAmi" => $numAmi,
+							"NumDiner" => $numDiner,
+							"NbInvite" => $nbInvite ));
+}
 ?> 
