@@ -7,31 +7,31 @@
 
 	<body>
 			
-			<?php include ("include/connexionDonnees.php"); ?>
+			<?php include ("include/pdo_function.php"); ?>
 		<div id="entete">
-			<?php include "include/inc_entete.php"; ?>
+			<?php include ("include/inc_entete.php"); ?>
 		</div>
 		
 		<center><div id="corps">
 			<?php
-			include "include/inc_menu.php";
+			include ("include/inc_menu.php");
 			?>
 			<br/>
 			<?php
 			if(!isset($_GET["page"]))
 			{
-				include "include/inc_accueil.php";
+				include ("include/inc_accueil.php");
 			}
 			else
 			{
-				include "pages/".$_GET["page"];
+				include ("pages/".$_GET["page"]);
 			}
 			?>
 		</div></center>
 		<br/>
 		<div id="pied">
 			<?php
-			include "include/inc_pied.php";
+			include ("include/inc_pied.php");
 			?>
 		</div>
 		
