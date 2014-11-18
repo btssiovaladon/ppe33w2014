@@ -7,7 +7,7 @@
 
 	<body>
 			
-			<?php include ("include/pdo_function.php"); ?>
+			<?php include ("include/pdo_fonction.php"); ?>
 		<div id="entete">
 			<?php include ("include/inc_entete.php"); ?>
 		</div>
