@@ -1,249 +1,204 @@
-DROP DATABASE IF EXISTS CLUBAMIS;
-
-CREATE DATABASE IF NOT EXISTS CLUBAMIS;
-USE CLUBAMIS;
-# -----------------------------------------------------------------------------
-#       TABLE : FONCTION
-# -----------------------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS FONCTION
- (
-   N_FONCTION INTEGER NOT NULL AUTO_INCREMENT ,
-   NOM_FONCTION CHAR(32) NULL  
-   , PRIMARY KEY (N_FONCTION) 
- ) 
- comment = "";
-
-# -----------------------------------------------------------------------------
-#       TABLE : ACTION
-# -----------------------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS ACTION
- (
-   N_ACTION INTEGER NOT NULL AUTO_INCREMENT ,
-   N_AMIS INTEGER NOT NULL  ,
-   DATE_DEB_ACTION DATE NULL  ,
-   DUREE_ACTION INTEGER NULL  ,
-   FONDS_COLLECTES REAL(5,2) NULL  
-   , PRIMARY KEY (N_ACTION) 
- ) 
- comment = "";
-
-# -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE ACTION
-# -----------------------------------------------------------------------------
-
-
-CREATE  INDEX I_FK_ACTION_AMIS
-     ON ACTION (N_AMIS ASC);
-
-# -----------------------------------------------------------------------------
-#       TABLE : DINER
-# -----------------------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS DINER
- (
-   N_DINER INTEGER NOT NULL AUTO_INCREMENT ,
-   DATE_DINER DATE NULL  ,
-   LIEU_DINER CHAR(32) NULL  ,
-   RUE_DINER CHAR(32) NULL  ,
-   VILLE_DINER CHAR(32) NULL  ,
-   PRIX_REPAS REAL(5,2) NULL  
-   , PRIMARY KEY (N_DINER) 
- ) 
- comment = "";
-
-# -----------------------------------------------------------------------------
-#       TABLE : COMMISSION
-# -----------------------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS COMMISSION
- (
-   N_COMMISSION INTEGER NOT NULL AUTO_INCREMENT ,
-   NOM_COMMISSION CHAR(32) NULL  
-   , PRIMARY KEY (N_COMMISSION) 
- ) 
- comment = "";
-
-# -----------------------------------------------------------------------------
-#       TABLE : AMIS
-# -----------------------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS AMIS
- (
-   N_AMIS INTEGER NOT NULL AUTO_INCREMENT ,
-   N_FONCTION INTEGER NULL  ,
-   NOM_AMIS CHAR(32) NULL  ,
-   PRENOM_AMIS CHAR(32) NULL  ,
-   TEL_FIX_AMIS CHAR(12) NULL  ,
-   TEL_PORTABLE_AMIS CHAR(12) NULL  ,
-   EMAIL_AMIS CHAR(32) NULL  ,
-   RUE_AMIS CHAR(32) NULL  ,
-   VILLE_AMIS CHAR(32) NULL  ,
-   DATE_ENTREE_AMIS DATE NULL  ,
-   MT_VERSE REAL(5,2) NULL  ,
-   PARRAIN_1 INTEGER NOT NULL  ,
-   PARRAIN_2 INTEGER NOT NULL  
-   , PRIMARY KEY (N_AMIS) 
- ) 
- comment = "";
-
-# -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE AMIS
-# -----------------------------------------------------------------------------
-
-
-CREATE  INDEX I_FK_AMIS_FONCTION
-     ON AMIS (N_FONCTION ASC);
-
-CREATE  INDEX I_FK_AMIS_AMIS
-     ON AMIS (PARRAIN_1 ASC);
-
-CREATE  INDEX I_FK_AMIS_AMIS1
-     ON AMIS (PARRAIN_2 ASC);
-
-# -----------------------------------------------------------------------------
-#       TABLE : PARAMETRE
-# -----------------------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS PARAMETRE
- (
-   MT_COTISATION REAL(5,2) NULL  ,
-   N_COTISATION INTEGER NOT NULL AUTO_INCREMENT 
-   , PRIMARY KEY (N_COTISATION) 
- ) 
- comment = "";
-
-# -----------------------------------------------------------------------------
-#       TABLE : PARTICIPER
-# -----------------------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS PARTICIPER
- (
-   N_AMIS INTEGER NOT NULL  ,
-   N_DINER INTEGER NOT NULL  
-   , PRIMARY KEY (N_AMIS,N_DINER) 
- ) 
- comment = "";
-
-# -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE PARTICIPER
-# -----------------------------------------------------------------------------
-
-
-CREATE  INDEX I_FK_PARTICIPER_AMIS
-     ON PARTICIPER (N_AMIS ASC);
-
-CREATE  INDEX I_FK_PARTICIPER_DINER
-     ON PARTICIPER (N_DINER ASC);
-
-# -----------------------------------------------------------------------------
-#       TABLE : GERER
-# -----------------------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS GERER
- (
-   N_COMMISSION INTEGER NOT NULL  ,
-   N_AMIS INTEGER NOT NULL  ,
-   N_FONCTION INTEGER NOT NULL  
-   , PRIMARY KEY (N_COMMISSION,N_AMIS) 
- ) 
- comment = "";
-
-# -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE GERER
-# -----------------------------------------------------------------------------
-
-
-CREATE  INDEX I_FK_GERER_COMMISSION
-     ON GERER (N_COMMISSION ASC);
-
-CREATE  INDEX I_FK_GERER_AMIS
-     ON GERER (N_AMIS ASC);
-
-CREATE  INDEX I_FK_GERER_FONCTION
-     ON GERER (N_FONCTION ASC);
-
-# -----------------------------------------------------------------------------
-#       TABLE : PARTICIPANT
-# -----------------------------------------------------------------------------
-
-CREATE TABLE IF NOT EXISTS PARTICIPANT
- (
-   N_AMIS INTEGER NOT NULL  ,
-   N_ACTION INTEGER NOT NULL  
-   , PRIMARY KEY (N_AMIS,N_ACTION) 
- ) 
- comment = "";
-
-# -----------------------------------------------------------------------------
-#       INDEX DE LA TABLE PARTICIPANT
-# -----------------------------------------------------------------------------
-
-
-CREATE  INDEX I_FK_PARTICIPANT_AMIS
-     ON PARTICIPANT (N_AMIS ASC);
-
-CREATE  INDEX I_FK_PARTICIPANT_ACTION
-     ON PARTICIPANT (N_ACTION ASC);
-
-
-# -----------------------------------------------------------------------------
-#       CREATION DES REFERENCES DE TABLE
-# -----------------------------------------------------------------------------
-
-
-ALTER TABLE ACTION 
-  ADD FOREIGN KEY FK_ACTION_AMIS (N_AMIS)
-      REFERENCES AMIS (N_AMIS) ;
-
-
-ALTER TABLE AMIS 
-  ADD FOREIGN KEY FK_AMIS_FONCTION (N_FONCTION)
-      REFERENCES FONCTION (N_FONCTION) ;
-
-
-ALTER TABLE AMIS 
-  ADD FOREIGN KEY FK_AMIS_AMIS (PARRAIN_1)
-      REFERENCES AMIS (N_AMIS) ;
-
-
-ALTER TABLE AMIS 
-  ADD FOREIGN KEY FK_AMIS_AMIS1 (PARRAIN_2)
-      REFERENCES AMIS (N_AMIS) ;
-
-
-ALTER TABLE PARTICIPER 
-  ADD FOREIGN KEY FK_PARTICIPER_AMIS (N_AMIS)
-      REFERENCES AMIS (N_AMIS) ;
-
-
-ALTER TABLE PARTICIPER 
-  ADD FOREIGN KEY FK_PARTICIPER_DINER (N_DINER)
-      REFERENCES DINER (N_DINER) ;
-
-
-ALTER TABLE GERER 
-  ADD FOREIGN KEY FK_GERER_COMMISSION (N_COMMISSION)
-      REFERENCES COMMISSION (N_COMMISSION) ;
-
-
-ALTER TABLE GERER 
-  ADD FOREIGN KEY FK_GERER_AMIS (N_AMIS)
-      REFERENCES AMIS (N_AMIS) ;
-
-
-ALTER TABLE GERER 
-  ADD FOREIGN KEY FK_GERER_FONCTION (N_FONCTION)
-      REFERENCES FONCTION (N_FONCTION) ;
-
-
-ALTER TABLE PARTICIPANT 
-  ADD FOREIGN KEY FK_PARTICIPANT_AMIS (N_AMIS)
-      REFERENCES AMIS (N_AMIS) ;
-
-
-ALTER TABLE PARTICIPANT 
-  ADD FOREIGN KEY FK_PARTICIPANT_ACTION (N_ACTION)
-      REFERENCES ACTION (N_ACTION) ;
-
+-- phpMyAdmin SQL Dump
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
+--
+-- Client: 127.0.0.1
+-- Généré le: Mar 18 Novembre 2014 à 09:58
+-- Version du serveur: 5.5.27-log
+-- Version de PHP: 5.4.6
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- Base de données: `clubamis`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `action`
+--
+
+CREATE TABLE IF NOT EXISTS `action` (
+  `N_ACTION` int(11) NOT NULL AUTO_INCREMENT,
+  `N_AMIS` int(11) NOT NULL,
+  `DATE_DEB_ACTION` date DEFAULT NULL,
+  `DUREE_ACTION` int(11) DEFAULT NULL,
+  `FONDS_COLLECTES` double(5,2) DEFAULT NULL,
+  PRIMARY KEY (`N_ACTION`),
+  KEY `I_FK_ACTION_AMIS` (`N_AMIS`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `amis`
+--
+
+CREATE TABLE IF NOT EXISTS `amis` (
+  `N_AMIS` int(11) NOT NULL AUTO_INCREMENT,
+  `N_FONCTION` int(11) DEFAULT NULL,
+  `NOM_AMIS` char(32) DEFAULT NULL,
+  `PRENOM_AMIS` char(32) DEFAULT NULL,
+  `TEL_FIX_AMIS` char(12) DEFAULT NULL,
+  `TEL_PORTABLE_AMIS` char(12) DEFAULT NULL,
+  `EMAIL_AMIS` char(32) DEFAULT NULL,
+  `RUE_AMIS` char(32) DEFAULT NULL,
+  `VILLE_AMIS` char(32) DEFAULT NULL,
+  `DATE_ENTREE_AMIS` date DEFAULT NULL,
+  `MT_VERSE` double(5,2) DEFAULT NULL,
+  `PARRAIN_1` int(11) NOT NULL,
+  `PARRAIN_2` int(11) NOT NULL,
+  PRIMARY KEY (`N_AMIS`),
+  KEY `I_FK_AMIS_FONCTION` (`N_FONCTION`),
+  KEY `I_FK_AMIS_AMIS` (`PARRAIN_1`),
+  KEY `I_FK_AMIS_AMIS1` (`PARRAIN_2`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commission`
+--
+
+CREATE TABLE IF NOT EXISTS `commission` (
+  `N_COMMISSION` int(11) NOT NULL AUTO_INCREMENT,
+  `NOM_COMMISSION` char(32) DEFAULT NULL,
+  PRIMARY KEY (`N_COMMISSION`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `diner`
+--
+
+CREATE TABLE IF NOT EXISTS `diner` (
+  `N_DINER` int(11) NOT NULL AUTO_INCREMENT,
+  `DATE_DINER` date DEFAULT NULL,
+  `LIEU_DINER` char(32) DEFAULT NULL,
+  `RUE_DINER` char(32) DEFAULT NULL,
+  `VILLE_DINER` char(32) DEFAULT NULL,
+  `PRIX_REPAS` double(5,2) DEFAULT NULL,
+  PRIMARY KEY (`N_DINER`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fonction`
+--
+
+CREATE TABLE IF NOT EXISTS `fonction` (
+  `N_FONCTION` int(11) NOT NULL AUTO_INCREMENT,
+  `NOM_FONCTION` char(32) DEFAULT NULL,
+  PRIMARY KEY (`N_FONCTION`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `gerer`
+--
+
+CREATE TABLE IF NOT EXISTS `gerer` (
+  `N_COMMISSION` int(11) NOT NULL,
+  `N_AMIS` int(11) NOT NULL,
+  `N_FONCTION` int(11) NOT NULL,
+  PRIMARY KEY (`N_COMMISSION`,`N_AMIS`),
+  KEY `I_FK_GERER_COMMISSION` (`N_COMMISSION`),
+  KEY `I_FK_GERER_AMIS` (`N_AMIS`),
+  KEY `I_FK_GERER_FONCTION` (`N_FONCTION`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `parametre`
+--
+
+CREATE TABLE IF NOT EXISTS `parametre` (
+  `MT_COTISATION` double(5,2) DEFAULT NULL,
+  `N_COTISATION` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`N_COTISATION`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `participant`
+--
+
+CREATE TABLE IF NOT EXISTS `participant` (
+  `N_AMIS` int(11) NOT NULL,
+  `N_ACTION` int(11) NOT NULL,
+  PRIMARY KEY (`N_AMIS`,`N_ACTION`),
+  KEY `I_FK_PARTICIPANT_AMIS` (`N_AMIS`),
+  KEY `I_FK_PARTICIPANT_ACTION` (`N_ACTION`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `participer`
+--
+
+CREATE TABLE IF NOT EXISTS `participer` (
+  `N_AMIS` int(11) NOT NULL,
+  `N_DINER` int(11) NOT NULL,
+  `NOMBRE_INVITE` int(11) NOT NULL,
+  PRIMARY KEY (`N_AMIS`,`N_DINER`),
+  KEY `I_FK_PARTICIPER_AMIS` (`N_AMIS`),
+  KEY `I_FK_PARTICIPER_DINER` (`N_DINER`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contraintes pour les tables exportées
+--
+
+--
+-- Contraintes pour la table `action`
+--
+ALTER TABLE `action`
+  ADD CONSTRAINT `action_ibfk_1` FOREIGN KEY (`N_AMIS`) REFERENCES `amis` (`N_AMIS`);
+
+--
+-- Contraintes pour la table `amis`
+--
+ALTER TABLE `amis`
+  ADD CONSTRAINT `amis_ibfk_3` FOREIGN KEY (`PARRAIN_2`) REFERENCES `amis` (`N_AMIS`),
+  ADD CONSTRAINT `amis_ibfk_1` FOREIGN KEY (`N_FONCTION`) REFERENCES `fonction` (`N_FONCTION`),
+  ADD CONSTRAINT `amis_ibfk_2` FOREIGN KEY (`PARRAIN_1`) REFERENCES `amis` (`N_AMIS`);
+
+--
+-- Contraintes pour la table `gerer`
+--
+ALTER TABLE `gerer`
+  ADD CONSTRAINT `gerer_ibfk_3` FOREIGN KEY (`N_FONCTION`) REFERENCES `fonction` (`N_FONCTION`),
+  ADD CONSTRAINT `gerer_ibfk_1` FOREIGN KEY (`N_COMMISSION`) REFERENCES `commission` (`N_COMMISSION`),
+  ADD CONSTRAINT `gerer_ibfk_2` FOREIGN KEY (`N_AMIS`) REFERENCES `amis` (`N_AMIS`);
+
+--
+-- Contraintes pour la table `participant`
+--
+ALTER TABLE `participant`
+  ADD CONSTRAINT `participant_ibfk_2` FOREIGN KEY (`N_ACTION`) REFERENCES `action` (`N_ACTION`),
+  ADD CONSTRAINT `participant_ibfk_1` FOREIGN KEY (`N_AMIS`) REFERENCES `amis` (`N_AMIS`);
+
+--
+-- Contraintes pour la table `participer`
+--
+ALTER TABLE `participer`
+  ADD CONSTRAINT `participer_ibfk_1` FOREIGN KEY (`N_AMIS`) REFERENCES `amis` (`N_AMIS`),
+  ADD CONSTRAINT `participer_ibfk_2` FOREIGN KEY (`N_DINER`) REFERENCES `diner` (`N_DINER`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
