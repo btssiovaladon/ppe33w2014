@@ -1,5 +1,5 @@
 
-<body>
+
 <?php
 try
 {
@@ -31,4 +31,27 @@ while($ligne=$resultat->fetch()){
 </TR>
 <?php } ?>
 	</table>	
-</body>
+
+<form method="post" action="">
+ 
+       <label for="ami">Sélectionner un ami</label><br />
+       <select name="ami" id="ami">
+<?php
+
+ 
+ 
+$reponse = $bdd->query('SELECT * FROM amis');
+ 
+while ($donnees = $reponse->fetch())
+{
+?>
+           <option value=" <?php echo $donnees['NOM_AMIS']; ?>"> <?php echo $donnees['PRENOM_AMIS']; ?></option>
+<?php
+}
+ 
+$reponse->closeCursor();
+ 
+?>
+</select>
+ 
+</form>
