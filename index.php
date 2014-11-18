@@ -27,7 +27,7 @@
 			}
 			else
 			{
-				include ("pages/".$_GET["page"]);
+				include ("page/".$_GET["page"]);
 			}
 			?>
 		</div></center>
