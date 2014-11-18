@@ -37,6 +37,19 @@ function fun_get_diner ($co, $num) {
 
 }
 
+/**
+
+	-> Permet de récupérer les participants à un id
+	-> Retoyrnne un tableau avec les enregistrements correspondant
+
+ */
+ 
+ function fun_get_participant_by_diner($co, $id){
+ 
+	$requete = $co->prepare("SELECT * FROM participer p INNER JOIN diner d On p.N_DINER = d.N_DINER WHERE p.N_DINER = :id");
+	$requete->execute(array("id" => $id));
+	return $requete->fetchAll();
+ }
 
 /**
 	-> Permet de récupérer l'ensemble des amis
@@ -46,5 +59,19 @@ function fun_get_all_ami ($co) {
 	$requete = $co->query('SELECT * FROM amis');
 	return $requete->fetchAll();
 }
+
+/**
+	-> Permet d'ajouter un diner
+ */
+function fun_insert_diner ($co, $date, $lieu, $rue, $ville, $prix) {
+	$requete = $co->prepare("INSERT INTO diner VALUES(:date, :lieu, :rue, :ville, :prix)");
+	$requete->execute(array("date" => $date,
+							"lieu" => $lieu,
+							"rue" => $rue,
+							"ville" => $ville,
+							"prix" => $prix));	
+}
+
+?> 
 
 ?> 
