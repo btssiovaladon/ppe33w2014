@@ -1,4 +1,6 @@
 <?php
+
+function fun_connexion_pdo() {
 	try {
 		$db = "mysql:host=localhost;dbname=clubamis";
 		$utilisateur = "root";
@@ -9,4 +11,6 @@
 	catch (PDOException $e) {
 		print("Erreur=".$e->getMessage());
 	} // fin catch
-?>
+}
+
+?> 

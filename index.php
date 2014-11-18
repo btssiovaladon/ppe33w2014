@@ -7,7 +7,10 @@
 
 	<body>
 			
-			<?php include ("include/pdo_fonction.php"); ?>
+			<?php include ("include/pdo_fonction.php"); 
+			
+			//Permet de définir la connexion PDO
+			$co = fun_connexion_pdo();?>
 		<div id="entete">
 			<?php include ("include/inc_entete.php"); ?>
 		</div>
