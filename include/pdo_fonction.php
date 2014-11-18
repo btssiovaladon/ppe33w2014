@@ -60,4 +60,18 @@ function fun_get_all_ami ($co) {
 	return $requete->fetchAll();
 }
 
+/**
+	-> Permet d'ajouter un diner
+ */
+function fun_insert_diner ($co, $date, $lieu, $rue, $ville, $prix) {
+	$requete = $co->prepare("INSERT INTO diner VALUES(:date, :lieu, :rue, :ville, :prix)");
+	$requete->execute(array("date" => $date,
+							"lieu" => $lieu,
+							"rue" => $rue,
+							"ville" => $ville,
+							"prix" => $prix));	
+}
+
+?> 
+
 ?> 
