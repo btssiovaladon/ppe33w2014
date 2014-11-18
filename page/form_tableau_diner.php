@@ -1,5 +1,5 @@
 <?php
-	$diners = get_all_diner($co);
+	$diners = fun_get_all_diner($co);
 ?>
 
 <form method="POST" action=''>

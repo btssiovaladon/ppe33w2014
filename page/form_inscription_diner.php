@@ -1,7 +1,7 @@
 <h2>Inscription d'un AMI au diner du ...</h2>
 
 <?php 
-	// requete..
+	$tabAmi = fun_get_all_ami($co)
 ?>
 
 <form method="GET" action="">
@@ -9,8 +9,8 @@
 		<td>
 			<select name="listeAmis">
 				<option>Choisir...</option>
-				<?php while($resultat=$ligne->fetch()) {?>
-				<option><?php echo $ligne['Nom'].'/'.$ligne['Prenom'];?></option>
+				<?php foreach($tabAmi as $ligne) {?>
+				<option><?php echo $ligne['NOM_AMIS'].'/'.$ligne['PRENOM_AMIS'];?></option>
 				<?php 
 					} // fin while
 					$resultat->closeCursor();
@@ -21,6 +21,6 @@
 	</tr>
 	
 	<tr>
-		<td><input type="submit" name="Submit" value="Inscrire"/></td>
+		<td><input type="submit" name="Inscrire" value="Inscription"/></td>
 	</tr>
 </form>
