@@ -37,4 +37,14 @@ function fun_get_diner ($co, $num) {
 
 }
 
+
+/**
+	-> Permet de récupérer l'ensemble des amis
+	-> Retourne un tableau avec tous les enregistrements  
+ */
+function fun_get_all_ami ($co) {
+	$requete = $co->query('SELECT * FROM amis');
+	return $requete->fetchAll();
+}
+
 ?> 
