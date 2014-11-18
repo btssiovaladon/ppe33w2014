@@ -17,16 +17,23 @@ function fun_connexion_pdo() {
 	} // fin catch
 }
 
-/*
-Permet de rÃ©cupÃ©rer les participants d'un diner
-*/
+/**
+	-> Permet de récupérer l'ensemble des dîners
+	-> Retourne un tableau avec tous les enregistrements  
+ */
+function fun_get_all_diner ($co) {
+	$requete = $co->query('SELECT * FROM diner');
+	return $requete->fetchAll();
+}
 
-function fun_get_participant_by_diner($co, $id){
-
-	$obtenir = $co->prepare("SELECT * FROM participer p INNER JOIN amis a ON p.N_AMIS = a.N_AMIS WHERE N_DINER = :id");
-	$obtenir->execute(array("id" => $id));
-	
-	return $obtenir->fetchAll();
+/**
+	-> Permet de récupérer un dîner selon un Num
+	-> Retourne un tableau avec l'enregistrement correspondant
+ */
+function fun_get_diner ($co, $num) {
+	$requete = $co->prepare('SELECT * FROM diner WHERE N_DINER=:num');
+	$requete->execute( array("num" => $num) );
+	return $requete->fetch();
 
 }
 
