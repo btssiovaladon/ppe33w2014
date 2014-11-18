@@ -1,5 +1,9 @@
 <?php
 
+/*
+Permet d'ouvrir une connexion
+*/
+
 function fun_connexion_pdo() {
 	try {
 		$db = "mysql:host=localhost;dbname=clubamis";
@@ -30,6 +34,7 @@ function fun_get_diner ($co, $num) {
 	$requete = $co->prepare('SELECT * FROM diner WHERE N_DINER=:num');
 	$requete->execute( array("num" => $num) );
 	return $requete->fetch();
+
 }
 
 

@@ -2,7 +2,7 @@
 	
 	//Id diner : $_GET['id']
 	
-	$participants = fun_get_Participant_By_Diner();
+	$participants = fun_get_participant_by_diner($co, $_GET['id']);
 
 ?>
 
@@ -10,9 +10,9 @@
 
 	<tr>
 		<td>Nom</td>
-		<td>PrÃ©nom</td>
-		<td>Nombre d'invitÃ©s</td>
-		<td>Supprimer du dÃ®ner</td>
+		<td>Prénom</td>
+		<td>Nombre d'invités</td>
+		<td>Supprimer du dîner</td>
 	</tr>
 	
 	<?php
