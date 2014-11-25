@@ -17,29 +17,41 @@ function fun_connexion_pdo() {
 	} // fin catch
 }
 
-function fun_get_all_comissions ($co) {
+function fun_get_all_commissions ($co) {
 	$requete = $co->query('SELECT * FROM commission');
 	return $requete->fetchAll();
 }
 
-function fun_inscrire_comission ($co, $comission, $ami) {
+function fun_inscrire_commission ($co, $commission, $ami) {
+	$test=fun_get_inscription_commission($co,$commission,$ami);
+	if(empty($test)){
 	$fonction = fun_get_fonction_ami($co,$ami);
-	$requete = $co->query('INSERT INTO gerer VALUES(:idC, :idA, :fonction)');
+	$requete = $co->prepare('INSERT INTO gerer VALUES(:idC, :idA, :fonction)');
 	$requete->execute(array(
-							"idC" => $comission,
+							"idC" => $commission,
 							"idA" => $ami,
 							"fonction" => $fonction ));
+	echo "<script>alert('Inscription réussie :)')</script>";
+	}
+	else echo "<script>alert('Inscription déja existante !')</script>";
 }
 
 function fun_get_ami ($co, $ami) {
-$requete = $co->prepare('SELECT * FROM amis WHERE N_AMI=:num');
+	$requete = $co->prepare('SELECT * FROM amis WHERE N_AMIS=:num');
 	$requete->execute( array("num" => $ami) );
 	return $requete->fetch();
 }
 
+function fun_get_inscription_commission($co,$commission,$ami) {
+	$requete = $co->prepare("SELECT * FROM gerer WHERE N_COMMISSION=:idC AND N_AMIS=:idA");
+	$requete->execute(array("idC" => $commission,
+							"idA" => $ami));
+	return $requete->fetchAll();
+}
+
 function fun_get_fonction_ami ($co, $ami) {
 $requete=fun_get_ami($co,$ami);
-return $requete[0];
+return $requete['N_FONCTION'];
 }
 
 /**
