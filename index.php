@@ -27,6 +27,20 @@
 		
 		<center><div id="corps">
 			<br/>
+			
+			<?php
+			
+			if(isset($_GET['ajax'])){
+				?>
+				
+				<div id="ajax">
+				
+				<?php
+					include("ajax/".$_GET['ajax']);
+				?>
+				
+				</div>
+			
 			<?php
 			
 			}
