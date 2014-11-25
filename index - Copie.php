@@ -4,12 +4,7 @@
 		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	 
-		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
-		<link rel="stylesheet" type="text/css" href="../css/message_box.css">
-		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
-		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
-		<link rel="stylesheet" type="text/css" href="../css/message_box.css">
-		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	 
+
 		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
 		<link rel="stylesheet" type="text/css" href="css/message_box.css">
 		<title>Le club des AMIS</title>
@@ -28,8 +23,6 @@
 		<center><div id="corps">
 			<br/>
 			<?php
-			
-			}
 			if(!isset($_GET["page"]))
 			{
 				include ("include/inc_accueil.php");
