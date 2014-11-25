@@ -43,8 +43,8 @@ $resultat =fun_afficher_amis ($co);
 		<td> <?php echo $ligne["PARRAIN_1"];?> </td> <!-- L2C3  -->
 		<td> <?php echo $ligne["PARRAIN_2"];?> </td> <!-- L2C3  -->
 <!-- Affichage des champs de la table dans les différentes colonnes -->
-<td> <a href="index.php?page=form_modif_ami.php?N_AMIS=<?php echo $ligne["N_AMIS"];?>"> Modifier </a> </td> 
-<td> <a onclick="return(confirm('Etes vous sur de vouloir supprimer cette personne ?'))" href="index.php?page=form_afficher_amis.php?N_AMIS=<?php echo $ligne["N_AMIS"];?>"> Suprimer </a> </td> 
+<td> <a href="index.php?page=form_modif_ami.php&N_AMIS=<?php echo $ligne["N_AMIS"];?>"> Modifier </a> </td> 
+<td> <a onclick="return(confirm('Etes vous sur de vouloir supprimer cette personne ?'))" href="index.php?page=form_afficher_amis.php&N_AMIS=<?php echo $ligne["N_AMIS"];?>"> Suprimer </a> </td> 
 	</tr>
 	<?php
 	}

@@ -1,12 +1,10 @@
 <?php
 if(isset($_POST["valider"])){
 fun_modif_amis($co,$_POST['F_NOAMIS'],$_POST['F_FONC'],$_POST['F_NAMIS'],$_POST['F_PAMIS'],$_POST['F_TELF'],$_POST['F_TELP'],$_POST['F_EMAIL'],$_POST['F_RUE'],$_POST['F_VILLE'],$_POST['F_DATE'],$_POST['F_MT'],$_POST['F_PARRAIN1'],$_POST['F_PARRAIN2']);
-header("Location: index.php?page=form_afficher_amis.php");
+//header("Location: index.php?page=form_afficher_amis.php");
 //réactualise la page
 }
-$resultat =fun_afficher_ami ($co, $_GET['N_AMIS']);
-foreach ($resultat as $ligne)
-	{
+$ligne =fun_afficher_ami ($co, $_GET['N_AMIS']);
 	?>
 <form method="POST" action="">
 <fieldset>
@@ -28,7 +26,6 @@ foreach ($resultat as $ligne)
 </fieldset>
 </form>
 	<?php
-	}
 ?>
 <!-- dès qu'il n'y a plus de ligne, on ferme la variable resultat -->
 </table>

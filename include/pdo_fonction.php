@@ -155,7 +155,7 @@ function fun_afficher_amis ($co) {
 	return $resultat->fetchAll();
 }
 
-function fun_modif_amis ($co, $val1,$val2,$val3,$val4,$val5,$val6,$val7,$val8,$val9,$val10,$val11,$val12,$val13,) {
+function fun_modif_amis ($co, $val1,$val2,$val3,$val4,$val5,$val6,$val7,$val8,$val9,$val10,$val11,$val12,$val13) {
 $resultat = $co->prepare('UPDATE amis SET N_FONCTION =:F_FONC, NOM_AMIS =:F_NAMIS,
 	PRENOM_AMIS =:F_PAMIS, TEL_FIX_AMIS =:F_TELF, TEL_PORTABLE_AMIS =:F_TELF, 
 	EMAIL_AMIS =:F_EMAIL, RUE_AMIS =:F_RUE, 
