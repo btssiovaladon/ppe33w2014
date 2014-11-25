@@ -38,10 +38,8 @@ function fun_get_diner ($co, $num) {
 }
 
 /**
-
 	-> Permet de récupérer les participants à un id
 	-> Retoyrnne un tableau avec les enregistrements correspondant
-
  */
  
  function fun_get_participant_by_diner($co, $id){
@@ -61,7 +59,6 @@ function fun_get_all_ami ($co) {
 }
 
 /**
-<<<<<<< HEAD
 	-> Permet d'inscrire un ami et ses convives
 	-> pour un diner voulu dans "participer" 
  */
@@ -72,9 +69,11 @@ function fun_set_inscrire_diner ($co, $numAmi, $numDiner, $nbInvite) {
 							"NumDiner" => $numDiner,
 							"NbInvite" => $nbInvite ));
 }
-=======
+
+/**
 	-> Permet d'ajouter un diner
- */
+*/
+
 function fun_insert_diner ($co, $date, $lieu, $rue, $ville, $prix) {
 	$requete = $co->prepare("INSERT INTO diner VALUES(:date, :lieu, :rue, :ville, :prix)");
 	$requete->execute(array("date" => $date,
@@ -84,7 +83,4 @@ function fun_insert_diner ($co, $date, $lieu, $rue, $ville, $prix) {
 							"prix" => $prix));	
 }
 
-?> 
-
->>>>>>> b8b35f2a354cbf97252e32ec6312b4b067496af7
 ?> 
