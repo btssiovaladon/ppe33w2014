@@ -17,30 +17,41 @@ function fun_connexion_pdo() {
 	} // fin catch
 }
 
-function fun_get_all_comissions ($co) {
+function fun_get_all_commissions ($co) {
 	$requete = $co->query('SELECT * FROM commission');
 	return $requete->fetchAll();
 }
 
-function fun_inscrire_comission ($co, $comission, $ami) {
-	$fonction = fun_get_fonction_ami($co,$ami);
-	$requete = $co->query('INSERT INTO gerer VALUES(:idC, :idA, :fonction)');
+function fun_inscrire_commission ($co, $commission, $ami, $fonction) {
+	$test=fun_get_inscription_commission($co,$commission,$ami);
+	if(empty($test)){
+	$requete = $co->prepare('INSERT INTO gerer VALUES(:idC, :idA, :fonction)');
 	$requete->execute(array(
-							"idC" => $comission,
+							"idC" => $commission,
 							"idA" => $ami,
 							"fonction" => $fonction ));
+	echo "<script>alert('Inscription réussie :)')</script>";
+	}
+	else echo "<script>alert('Inscription déja existante !')</script>";
 }
 
 function fun_get_ami ($co, $ami) {
-$requete = $co->prepare('SELECT * FROM amis WHERE N_AMI=:num');
+	$requete = $co->prepare('SELECT * FROM amis WHERE N_AMIS=:num');
 	$requete->execute( array("num" => $ami) );
 	return $requete->fetch();
 }
 
-function fun_get_fonction_ami ($co, $ami) {
-$requete=fun_get_ami($co,$ami);
-return $requete[0];
+function fun_get_inscription_commission($co,$commission,$ami) {
+	$requete = $co->prepare("SELECT * FROM gerer WHERE N_COMMISSION=:idC AND N_AMIS=:idA");
+	$requete->execute(array("idC" => $commission,
+							"idA" => $ami));
+	return $requete->fetchAll();
 }
+
+function fun_get_all_fonctions($co) {
+	$requete = $co->query('SELECT * FROM fonction');
+	return $requete->fetchAll();
+	}
 
 /**
 	-> Permet de récupérer l'ensemble des dîners
@@ -69,7 +80,7 @@ function fun_get_diner ($co, $num) {
  
  function fun_get_participant_by_diner($co, $id){
  
-	$requete = $co->prepare("SELECT * FROM participer p INNER JOIN diner d On p.N_DINER = d.N_DINER WHERE p.N_DINER = :id");
+	$requete = $co->prepare("SELECT * FROM participer p INNER JOIN diner d On p.N_DINER = d.N_DINER INNER JOIN amis a ON p.N_AMIS = a.N_AMIS WHERE p.N_DINER = :id");
 	$requete->execute(array("id" => $id));
 	return $requete->fetchAll();
  }
@@ -81,6 +92,25 @@ function fun_get_diner ($co, $num) {
 function fun_get_all_ami ($co) {
 	$requete = $co->query('SELECT * FROM amis');
 	return $requete->fetchAll();
+}
+
+/**
+	-> Permet de mettre à jour le nombre d'invités d'un diner
+	
+ */
+ 
+function fun_update_diner_participant($co, $diner, $participant, $invites){
+
+	$requete = $co->prepare("UPDATE participer SET NOMBRE_INVITE = :nb WHERE N_AMIS = :ami AND N_DINER = :diner");
+	$requete->execute(array("nb" => $invites, "ami" => $participant, "diner" => $diner));
+
+}
+
+function fun_delete_diner_participant($co, $diner, $participant){
+
+	$requete = $co->prepare("DELETE FROM participer WHERE N_AMIS = :ami AND N_DINER = :diner");
+	$requete->execute(array("ami" => $participant, "diner" => $diner));
+
 }
 
 /**
@@ -109,7 +139,7 @@ function fun_insert_diner ($co, $date, $lieu, $rue, $ville, $prix) {
 }
 
 function fun_insert_cotisation ($co, $valeur) {
-	$requete = $co->prepare("INSERT INTO parametre VALUES(:montant)");
+	$requete = $co->prepare("INSERT INTO parametre (MT_COTISATION) VALUES(:montant)");
 	$requete->execute(array("montant" => $valeur));	
 }
 
