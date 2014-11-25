@@ -22,9 +22,9 @@
 			<td><?php echo $d["DATE_DINER"]; ?> </td>
 			<td> <a href="?page=form_inscription_diner.php&id=<?php echo $d['N_DINER']; ?>">Ajouter un participant</a> </td>
 			<td> <a href="?page=form_consultation_diner.php&id=<?php echo $d['N_DINER']; ?>">Consultation</a> </td>
-			<td> <a href="form_modificatin_diner.php?id=<?php echo $d['N_DINER']; ?>">Modification</a> </td>
-			<td> <a href="form_suppression_diner.php?id=<?php echo $d['N_DINER']; ?>">Suppression</a> </td>
-			<td> <a href="form_edition_diner.php?id=<?php echo $d['N_DINER']; ?>">Edition</a> </td>
+			<td> <a href="?page=form_modification_diner.php?id=<?php echo $d['N_DINER']; ?>">Modification</a> </td>
+			<td> <a href="?page=form_suppression_diner.php?id=<?php echo $d['N_DINER']; ?>">Suppression</a> </td>
+			<td> <a href="?page=form_edition_diner.php?id=<?php echo $d['N_DINER']; ?>">Edition</a> </td>
 			
 			<?php }} ?>
 		</tr>
