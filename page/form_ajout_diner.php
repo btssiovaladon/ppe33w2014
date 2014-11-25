@@ -1,4 +1,4 @@
-<form method="POST" action=''>
+<form method="POST" action='index.php?page=form_ajout_diner.php'>
 	<table>
 		<tr>
 			<td> Date du dîner: </td>
@@ -21,13 +21,21 @@
 			<td> <input type="text" name="prix"/> </td>
 		</tr>
 		<tr>
-			<td> <input type="submit" text="Ajouter"> </td>
+			<td> <input type="submit" name="submit" value="Ajouter"> </td>
 		</tr>
 	</table>
 </form>
 
 <?php
-	if(isset($_POST["date"])){
-		fun_insert_diner($co, $_POST["date"], $_POST["lieu"], $_POST["rue"], $_POST["ville"], $_POST["prix"]);
+	if(isset($_POST["submit"])) {
+		
+	fun_insert_diner($co, $_POST["date"], $_POST["lieu"], $_POST["rue"], $_POST["ville"], $_POST["prix"]);
+	
+?>
+	<script>
+				alert("Insertion reussie !");
+		</script>
+<?php
 	}
 ?>
+

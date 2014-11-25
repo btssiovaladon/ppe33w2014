@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+<?php
+	 include ("page/form_connexion.php"); 
+?>
+=======
 				<div class="main">
 					<div class="border-top">
 						<div class="wrapper">
@@ -12,3 +17,4 @@
 						</div>
 					</div>
 				</div>
+>>>>>>> a89f39d4f781ab59fd8ff23b2ea5561131a112f5

@@ -81,7 +81,7 @@ function fun_get_diner ($co, $num) {
  
  function fun_get_participant_by_diner($co, $id){
  
-	$requete = $co->prepare("SELECT * FROM participer p INNER JOIN diner d On p.N_DINER = d.N_DINER WHERE p.N_DINER = :id");
+	$requete = $co->prepare("SELECT * FROM participer p INNER JOIN diner d On p.N_DINER = d.N_DINER INNER JOIN amis a ON p.N_AMIS = a.N_AMIS WHERE p.N_DINER = :id");
 	$requete->execute(array("id" => $id));
 	return $requete->fetchAll();
  }
@@ -93,6 +93,25 @@ function fun_get_diner ($co, $num) {
 function fun_get_all_ami ($co) {
 	$requete = $co->query('SELECT * FROM amis');
 	return $requete->fetchAll();
+}
+
+/**
+	-> Permet de mettre à jour le nombre d'invités d'un diner
+	
+ */
+ 
+function fun_update_diner_participant($co, $diner, $participant, $invites){
+
+	$requete = $co->prepare("UPDATE participer SET NOMBRE_INVITE = :nb WHERE N_AMIS = :ami AND N_DINER = :diner");
+	$requete->execute(array("nb" => $invites, "ami" => $participant, "diner" => $diner));
+
+}
+
+function fun_delete_diner_participant($co, $diner, $participant){
+
+	$requete = $co->prepare("DELETE FROM participer WHERE N_AMIS = :ami AND N_DINER = :diner");
+	$requete->execute(array("ami" => $participant, "diner" => $diner));
+
 }
 
 /**
@@ -112,7 +131,7 @@ function fun_set_inscrire_diner ($co, $numAmi, $numDiner, $nbInvite) {
 */
 
 function fun_insert_diner ($co, $date, $lieu, $rue, $ville, $prix) {
-	$requete = $co->prepare("INSERT INTO diner VALUES(:date, :lieu, :rue, :ville, :prix)");
+	$requete = $co->prepare("INSERT INTO diner(DATE_DINER, LIEU_DINER, RUE_DINER, VILLE_DINER, PRIX_REPAS) VALUES(:date, :lieu, :rue, :ville, :prix)");
 	$requete->execute(array("date" => $date,
 							"lieu" => $lieu,
 							"rue" => $rue,
@@ -121,7 +140,7 @@ function fun_insert_diner ($co, $date, $lieu, $rue, $ville, $prix) {
 }
 
 function fun_insert_cotisation ($co, $valeur) {
-	$requete = $co->prepare("INSERT INTO parametre VALUES(:montant)");
+	$requete = $co->prepare("INSERT INTO parametre (MT_COTISATION) VALUES(:montant)");
 	$requete->execute(array("montant" => $valeur));	
 }
 
