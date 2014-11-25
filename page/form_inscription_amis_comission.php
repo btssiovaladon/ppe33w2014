@@ -7,6 +7,7 @@ if(isset($_POST['creer']))
 fun_inscrire_commission ($co, $_POST['commission'], $_POST['amis'], $_POST['fonction']);
 }
 ?> 
+<h1>Inscription d'un ami à une comission</h1>
 <table>
 <tr>
 <td>Séléctionnez un ami:</td>
