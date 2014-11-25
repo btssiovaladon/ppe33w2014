@@ -1,7 +1,10 @@
 <html>
 	<head>
 		<meta charset="iso-8859-15">
-		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
+			<meta charset="utf-8">
+		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	  
 		<title>Le club des AMIS</title>
 	</head>
 
@@ -13,6 +16,7 @@
 			$co = fun_connexion_pdo();?>
 		<div id="entete">
 			<?php include ("include/inc_entete.php"); ?>
+	
 		</div>
 		
 		<center><div id="corps">
