@@ -4,9 +4,7 @@
 		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
 		<title>Le club des AMIS</title>
 	</head>
-
 	<body>
-			
 			<?php include ("include/pdo_fonction.php"); 
 			
 			//Permet de définir la connexion PDO
@@ -27,7 +25,7 @@
 			}
 			else
 			{
-				include ("pages/".$_GET["page"]);
+				include ("page/".$_GET["page"]);
 			}
 			?>
 		</div></center>
@@ -37,7 +35,5 @@
 			include ("include/inc_pied.php");
 			?>
 		</div>
-		
-		
 	</body>
 </html>
