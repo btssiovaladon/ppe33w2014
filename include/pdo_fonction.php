@@ -75,7 +75,7 @@ function fun_set_inscrire_diner ($co, $numAmi, $numDiner, $nbInvite) {
 */
 
 function fun_insert_diner ($co, $date, $lieu, $rue, $ville, $prix) {
-	$requete = $co->prepare("INSERT INTO diner VALUES(:date, :lieu, :rue, :ville, :prix)");
+	$requete = $co->prepare("INSERT INTO diner(DATE_DINER, LIEU_DINER, RUE_DINER, VILLE_DINER, PRIX_REPAS) VALUES(:date, :lieu, :rue, :ville, :prix)");
 	$requete->execute(array("date" => $date,
 							"lieu" => $lieu,
 							"rue" => $rue,
