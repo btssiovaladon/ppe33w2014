@@ -147,11 +147,12 @@ function fun_insert_cotisation ($co, $valeur) {
 */
 function fun_suppr_amis ($co, $valeur) {
 	$resultat = $co->prepare('DELETE FROM amis WHERE N_AMIS = :numForm');
-	$resultat -> execute (array ('numForm' =>$_GET['N_AMIS']));
+	$resultat -> execute (array ('numForm' =>$valeur));
 }
 
 function fun_afficher_amis ($co) {
 	$resultat = $co->query('SELECT * FROM amis');
+	return $resultat->fetchAll();
 }
 
 function fun_modif_amis ($co, $val1,$val2,$val3,$val4,$val5,$val6,$val7,$val8,$val9,$val10,$val11,$val12,$val13,) {
@@ -181,6 +182,7 @@ $resultat -> execute (array (
 function fun_afficher_ami ($co, $valeur) {
 $resultat = $co->prepare('SELECT * FROM AMIS WHERE N_AMIS =:NAMIS');
 $resultat -> execute (array ('NAMIS' =>$valeur));
+return $resultat->fetch();
 }
 /**
 	-> FIN GESTION AMIS
