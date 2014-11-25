@@ -2,6 +2,7 @@
 	<head>
 		<meta charset="iso-8859-15">
 		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
+		<link rel="stylesheet" type="text/css" href="../css/message_box.css">
 		<title>Le club des AMIS</title>
 	</head>
 	<body>
