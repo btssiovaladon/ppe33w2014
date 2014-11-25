@@ -17,6 +17,31 @@ function fun_connexion_pdo() {
 	} // fin catch
 }
 
+function fun_get_all_comissions ($co) {
+	$requete = $co->query('SELECT * FROM commission');
+	return $requete->fetchAll();
+}
+
+function fun_inscrire_comission ($co, $comission, $ami) {
+	$fonction = fun_get_fonction_ami($co,$ami);
+	$requete = $co->query('INSERT INTO gerer VALUES(:idC, :idA, :fonction)');
+	$requete->execute(array(
+							"idC" => $comission,
+							"idA" => $ami,
+							"fonction" => $fonction ));
+}
+
+function fun_get_ami ($co, $ami) {
+$requete = $co->prepare('SELECT * FROM amis WHERE N_AMI=:num');
+	$requete->execute( array("num" => $ami) );
+	return $requete->fetch();
+}
+
+function fun_get_fonction_ami ($co, $ami) {
+$requete=fun_get_ami($co,$ami);
+return $requete[0];
+}
+
 /**
 	-> Permet de récupérer l'ensemble des dîners
 	-> Retourne un tableau avec tous les enregistrements  
@@ -81,6 +106,11 @@ function fun_insert_diner ($co, $date, $lieu, $rue, $ville, $prix) {
 							"rue" => $rue,
 							"ville" => $ville,
 							"prix" => $prix));	
+}
+
+function fun_insert_cotisation ($co, $valeur) {
+	$requete = $co->prepare("INSERT INTO parametre VALUES(:montant)");
+	$requete->execute(array("montant" => $valeur));	
 }
 
 ?> 
