@@ -1,26 +1,41 @@
-<h2>Inscription d'un AMI au diner du ...</h2>
+<form method="POST" action='index.php?page=form_ajout_diner.php'>
+	<table>
+		<tr>
+			<td> Date du dîner: </td>
+			<td> <input type="date" name="date"/> </td>
+		</tr>		
+		<tr>
+			<td> Lieu du dîner: </td>
+			<td> <input type="text" name="lieu"/> </td>
+		</tr>		
+		<tr>
+			<td> Rue du dîner: </td>
+			<td> <input type="text" name="rue"/> </td>
+		</tr>		
+		<tr>
+			<td> Ville du dîner: </td>
+			<td> <input type="text" name="ville"/> </td>
+		</tr>		
+		<tr>
+			<td> Prix du repas: </td>
+			<td> <input type="text" name="prix"/> </td>
+		</tr>
+		<tr>
+			<td> <input type="submit" name="submit" value="Ajouter"> </td>
+		</tr>
+	</table>
+</form>
 
-<?php 
-	// requete..
+<?php
+	if(isset($_POST["submit"])) {
+		
+	fun_insert_diner($co, $_POST["date"], $_POST["lieu"], $_POST["rue"], $_POST["ville"], $_POST["prix"]);
+	
+?>
+	<script>
+				alert("Insertion reussie !");
+		</script>
+<?php
+	}
 ?>
 
-<form method="GET" action="">
-	<tr>
-		<td>
-			<select name="listeAmis">
-				<option>Choisir...</option>
-				<?php while($resultat=$ligne->fetch()) {?>
-				<option><?php echo $ligne['Nom'].'/'.$ligne['Prenom'];?></option>
-				<?php 
-					} // fin while
-					$resultat->closeCursor();
-				?>
-			</select>
-		</td>
-		<td><input type="text" name="nbinvite"/></td>
-	</tr>
-	
-	<tr>
-		<td><input type="submit" name="Submit" value="Inscrire"/></td>
-	</tr>
-</form>

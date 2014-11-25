@@ -1,28 +1,40 @@
 <html>
 	<head>
 		<meta charset="iso-8859-15">
+<<<<<<< HEAD
 			<meta charset="utf-8">
 		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	  
+=======
+<<<<<<< HEAD
+		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	 
+=======
+		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
+		<link rel="stylesheet" type="text/css" href="../css/message_box.css">
+>>>>>>> 730e4c0b215a82d4ee8a389f43c63f18d5da57db
+>>>>>>> a89f39d4f781ab59fd8ff23b2ea5561131a112f5
 		<title>Le club des AMIS</title>
 	</head>
 
-	<body>
+	<body id="page1">
 			
 			<?php include ("include/pdo_fonction.php"); 
 			
-			//Permet de définir la connexion PDO
+			//Permet de definir la connexion PDO
 			$co = fun_connexion_pdo();?>
 		<div id="entete">
 			<?php include ("include/inc_entete.php"); ?>
+<<<<<<< HEAD
 	
 		</div>
+=======
+		
+>>>>>>> a89f39d4f781ab59fd8ff23b2ea5561131a112f5
 		
 		<center><div id="corps">
-			<?php
-			include ("include/inc_menu.php");
-			?>
 			<br/>
 			<?php
 			if(!isset($_GET["page"]))
@@ -31,7 +43,7 @@
 			}
 			else
 			{
-				include ("pages/".$_GET["page"]);
+				include ("page/".$_GET["page"]);
 			}
 			?>
 		</div></center>
