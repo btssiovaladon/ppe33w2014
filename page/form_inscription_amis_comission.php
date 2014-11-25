@@ -1,28 +1,32 @@
 <?php 
 $amis = fun_get_all_ami($co);
+$comissions = fun_get_all_comissions($co);
 ?> 
 Séléctionnez un ami:
-<select>
+<form 
+<select id="amis">
 <?php
-while($ligne = $amis->fetch())
+foreach($amis as $ligne)
 {
 ?>
-<option value="<?php echo $ligne['N_AMIS'] ?>">
-<?php echo $ligne['NOM_AMIS']. " " .$ligne['PRENOM_AMIS'] ?>
+<option value="<?php echo $ligne['N_AMIS']; ?>">
+<?php echo $ligne['NOM_AMIS']. " " .$ligne['PRENOM_AMIS']; ?>
 </option>
 <?php 
 } 
 ?>
-</select>
+</select><br>
 Séléctionnez une commission:
+<select id="commission">
 <?php
-while($ligne = $comissions->fetch())
+foreach($comissions as $ligne)
 {
 ?>
-<option value="<?php echo $ligne['N_COMMISSION'] ?>">
-<?php echo $ligne['NOM_COMMISSION'] ?>
+<option value="<?php echo $ligne['N_COMMISSION']; ?>">
+<?php echo $ligne['NOM_COMMISSION']; ?>
 </option>
 <?php 
 } 
 ?>
-</select>
+</select><br>
+<input type="submit">
