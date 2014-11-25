@@ -83,4 +83,9 @@ function fun_insert_diner ($co, $date, $lieu, $rue, $ville, $prix) {
 							"prix" => $prix));	
 }
 
+function fun_insert_cotisation ($co, $valeur) {
+	$requete = $co->prepare("INSERT INTO parametre VALUES(:montant)");
+	$requete->execute(array("montant" => $valeur));	
+}
+
 ?> 
