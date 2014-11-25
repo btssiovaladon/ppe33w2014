@@ -1,10 +1,10 @@
 <?php 
 $amis = fun_get_all_ami($co);
 $commissions = fun_get_all_commissions($co);
-
+$fonctions = fun_get_all_fonctions($co);
 if(isset($_POST['creer']))
 {
-fun_inscrire_commission ($co, $_POST['commission'], $_POST['amis']);
+fun_inscrire_commission ($co, $_POST['commission'], $_POST['amis'], $_POST['fonction']);
 }
 ?> 
 <table>
@@ -33,6 +33,21 @@ foreach($commissions as $ligne)
 ?>
 <option value="<?php echo $ligne['N_COMMISSION']; ?>">
 <?php echo $ligne['NOM_COMMISSION']; ?>
+</option>
+<?php 
+} 
+?>
+</select></td>
+</tr>
+<tr>
+<td>Séléctionnez une fonction:</td>
+<td><select name="fonction">
+<?php
+foreach($fonctions as $ligne)
+{
+?>
+<option value="<?php echo $ligne['N_FONCTION']; ?>">
+<?php echo $ligne['NOM_FONCTION']; ?>
 </option>
 <?php 
 } 

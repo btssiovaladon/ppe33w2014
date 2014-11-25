@@ -22,10 +22,9 @@ function fun_get_all_commissions ($co) {
 	return $requete->fetchAll();
 }
 
-function fun_inscrire_commission ($co, $commission, $ami) {
+function fun_inscrire_commission ($co, $commission, $ami, $fonction) {
 	$test=fun_get_inscription_commission($co,$commission,$ami);
 	if(empty($test)){
-	$fonction = fun_get_fonction_ami($co,$ami);
 	$requete = $co->prepare('INSERT INTO gerer VALUES(:idC, :idA, :fonction)');
 	$requete->execute(array(
 							"idC" => $commission,
@@ -49,10 +48,10 @@ function fun_get_inscription_commission($co,$commission,$ami) {
 	return $requete->fetchAll();
 }
 
-function fun_get_fonction_ami ($co, $ami) {
-$requete=fun_get_ami($co,$ami);
-return $requete['N_FONCTION'];
-}
+function fun_get_all_fonctions($co) {
+	$requete = $co->query('SELECT * FROM fonction');
+	return $requete->fetchAll();
+	}
 
 /**
 	-> Permet de récupérer l'ensemble des dîners
