@@ -1,3 +1,6 @@
+<?php
+	 include ("page/form_connexion.php"); 
+?>
 
 <?php
 	 include ("page/form_connexion.php"); 
