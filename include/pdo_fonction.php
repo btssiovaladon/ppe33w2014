@@ -187,4 +187,28 @@ return $resultat->fetch();
 /**
 	-> FIN GESTION AMIS
 */
+
+function fun_obtenir_action_commission($co, $commission){
+
+	$resultat = 
+	$co->prepare("SELECT * FROM action a
+					INNER JOIN amis am ON a.N_AMIS = am.N_AMIS
+					INNER JOIN gerer ge ON ge.N_AMIS = am.N_AMIS
+					INNER JOIN commission c ON ge.N_COMMISSION = c.N_COMMISSION
+					WHERE c.N_COMMISSION = :com");
+	$resultat->execute(array('com' => $commission));
+	
+	return $resultat->fetchAll();
+
+}
+
+function fun_obtenir_commission($co, $commission){
+
+	$resultat = $co->prepare("SELECT * FROM commission WHERE N_COMMISSION = :com");
+	$resultat->execute(array("com" => $commission));
+	
+	return $resultat->fetch();
+
+}
+
 ?> 
