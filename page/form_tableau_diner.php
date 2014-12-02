@@ -12,7 +12,7 @@
 </form>
 
 <?php if(isset($_POST["liste_diner"])){?>
-	<table border="1">
+	<table border="1" style="text-align: center;">
 		<tr>
 			<?php 
 				foreach($diners as $d){
@@ -20,11 +20,11 @@
 			?>
 			
 			<td><?php echo $d["DATE_DINER"]; ?> </td>
-			<td> <a href="?page=form_inscription_diner.php&id=<?php echo $d['N_DINER']; ?>">Ajouter un participant</a> </td>
-			<td> <a href="?page=form_consultation_diner.php&id=<?php echo $d['N_DINER']; ?>">Consultation</a> </td>
-			<td> <a href="?page=form_modification_diner.php?id=<?php echo $d['N_DINER']; ?>">Modification</a> </td>
-			<td> <a href="?page=form_suppression_diner.php?id=<?php echo $d['N_DINER']; ?>">Suppression</a> </td>
-			<td> <a href="?page=form_edition_diner.php?id=<?php echo $d['N_DINER']; ?>">Edition</a> </td>
+			<td> <a href="?page=form_inscription_diner.php&id=<?php echo $d['N_DINER']; ?>"><img src="images/ajouter.png"/><br/>Ajouter un participant</a> </td>
+			<td> <a href="?page=form_consultation_diner.php&id=<?php echo $d['N_DINER']; ?>"><img src="images/consulter.png"/><br/>Consultation</a> </td>
+			<td> <a href="?page=form_modification_diner.php?id=<?php echo $d['N_DINER']; ?>"><img width="16px" height="16px" src="images/page2-img2.png"/><br/>Modification</a> </td>
+			<td> <a href="?page=form_suppression_diner.php?id=<?php echo $d['N_DINER']; ?>"><img src="images/supprimer.png"/><br/>Suppression</a> </td>
+			<td> <a href="?page=form_edition_diner.php?id=<?php echo $d['N_DINER']; ?>"><img src="images/pdf.png"/><br/>Edition</a> </td>
 			
 			<?php }} ?>
 		</tr>
