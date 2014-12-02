@@ -211,4 +211,17 @@ function fun_obtenir_commission($co, $commission){
 
 }
 
+function fun_obtenir_chef_action($co, $act){
+	$resultat = $co -> prepare('SELECT amis.*, action.N_AMIS as n_chef FROM amis inner join action on amis.N_AMIS = n_chef WHERE action.N_ACTION = :id');
+	$resultat -> execute(array('id' => $act));
+
+	return $resultat->fetch();
+}
+
+function fun_obtenir_participants_action($co, $act){
+	$resultat = $co -> prepare('SELECT amis.*, participant.N_AMIS as n_participant FROM amis inner join participant on amis.N_AMIS = n_participant WHERE participant.N_ACTION = :id');
+	$resultat -> execute(array('id' => $act));
+
+	return $resultat->fetch();
+}
 ?> 
