@@ -1,11 +1,19 @@
 <html>
 	<head>
+<<<<<<< HEAD
+
+=======
+>>>>>>> a35bd0ffe810f9245a198b78d158abbf939b2026
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	 
 		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
 		<link rel="stylesheet" type="text/css" href="../css/message_box.css">
+<<<<<<< HEAD
+
+=======
+>>>>>>> a35bd0ffe810f9245a198b78d158abbf939b2026
 		<meta charset="iso-8859-15">
 		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
@@ -21,6 +29,10 @@
 		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	 
 		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
 		<link rel="stylesheet" type="text/css" href="css/message_box.css">
+<<<<<<< HEAD
+
+=======
+>>>>>>> a35bd0ffe810f9245a198b78d158abbf939b2026
 		<title>Le club des AMIS</title>
 	</head>
 
