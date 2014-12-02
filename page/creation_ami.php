@@ -1,6 +1,4 @@
-<?php
-include ('../include/pdo_fonction.php')
-?>
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <form action="">
@@ -25,7 +23,7 @@ include ('../include/pdo_fonction.php')
 function envoipersajax(nom)
 	{
 	var requete= $.ajax({
-	url: "getparrain.php",
+	url: "index.php?ajax=getparrain.php",
 	type:"POST",
 	data:"NOM_AMIS=" + escape(nom),
 	//cache: false, // pas de mise en cache
@@ -56,7 +54,7 @@ function envoipersajax(nom)
 		}
 	},
 	error:function(){
-		alert("perdu");
+		
 	}
 	});
 	return;
