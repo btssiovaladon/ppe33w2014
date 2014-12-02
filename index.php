@@ -1,23 +1,32 @@
 <html>
 	<head>
 		<meta charset="iso-8859-15">
+<<<<<<< HEAD
+		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	 
+=======
 		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
+<<<<<<< HEAD
 		<link rel="stylesheet" type="text/css" href="css/message_box.css">
+=======
+		<link rel="stylesheet" type="text/css" href="../css/message_box.css">
+>>>>>>> 730e4c0b215a82d4ee8a389f43c63f18d5da57db
+>>>>>>> be8a19c6720de3ac3bbda968b1a7dac7d78a9b53
 		<title>Le club des AMIS</title>
 	</head>
-	<body>
+
+	<body id="page1">
+			
 			<?php include ("include/pdo_fonction.php"); 
 			
 			//Permet de definir la connexion PDO
 			$co = fun_connexion_pdo();?>
 		<div id="entete">
 			<?php include ("include/inc_entete.php"); ?>
-		</div>
+		
 		
 		<center><div id="corps">
-			<?php
-			include ("include/inc_menu.php");
-			?>
 			<br/>
 			<?php
 			if(!isset($_GET["page"]))
@@ -36,5 +45,7 @@
 			include ("include/inc_pied.php");
 			?>
 		</div>
+		
+		
 	</body>
 </html>

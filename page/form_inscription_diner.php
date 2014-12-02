@@ -1,12 +1,6 @@
 <h2>Inscription d'un AMI au diner du ...</h2>
 
-<?php 
-	if (isset($_GET['Inscrire'])) {
-	
-		fun_set_inscrire_diner($co, $_GET['listeAmis'], $_GET['numdiner'], $_GET['nbinvite']);
-	
-	}  // fin if isset
-
+<?php
 	$tabAmi = fun_get_all_ami($co)
 ?>
 
@@ -22,7 +16,7 @@
 				?>
 			</select>
 		</td>
-		<td><input type="hidden" name="numdiner" value="$_GET['N_DINER']"/></td>   // mémorise la variable N_DINER pour le formulaire
+		<td><input type="hidden" name="numdiner" value="<?php $_GET['N_DINER'];?>"/></td>   <!-- mémorise la variable N_DINER pour le formulaire -->
 		<td><input type="text" name="nbinvite"/></td>
 	</tr>
 	
@@ -30,3 +24,12 @@
 		<td><input type="submit" name="Inscrire" value="Inscription"/></td>
 	</tr>
 </form>
+
+<?php 
+	if (isset($_GET['Inscrire'])) {
+	
+		fun_set_inscrire_diner($co, $_GET['listeAmis'], $_GET['numdiner'], $_GET['nbinvite']);
+	
+	}  // fin if isset
+
+?>
