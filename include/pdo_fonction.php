@@ -17,30 +17,41 @@ function fun_connexion_pdo() {
 	} // fin catch
 }
 
-function fun_get_all_comissions ($co) {
+function fun_get_all_commissions ($co) {
 	$requete = $co->query('SELECT * FROM commission');
 	return $requete->fetchAll();
 }
 
-function fun_inscrire_comission ($co, $comission, $ami) {
-	$fonction = fun_get_fonction_ami($co,$ami);
-	$requete = $co->query('INSERT INTO gerer VALUES(:idC, :idA, :fonction)');
+function fun_inscrire_commission ($co, $commission, $ami, $fonction) {
+	$test=fun_get_inscription_commission($co,$commission,$ami);
+	if(empty($test)){
+	$requete = $co->prepare('INSERT INTO gerer VALUES(:idC, :idA, :fonction)');
 	$requete->execute(array(
-							"idC" => $comission,
+							"idC" => $commission,
 							"idA" => $ami,
 							"fonction" => $fonction ));
+	echo "<script>alert('Inscription réussie :)')</script>";
+	}
+	else echo "<script>alert('Inscription déja existante !')</script>";
 }
 
 function fun_get_ami ($co, $ami) {
-$requete = $co->prepare('SELECT * FROM amis WHERE N_AMI=:num');
+	$requete = $co->prepare('SELECT * FROM amis WHERE N_AMIS=:num');
 	$requete->execute( array("num" => $ami) );
 	return $requete->fetch();
 }
 
-function fun_get_fonction_ami ($co, $ami) {
-$requete=fun_get_ami($co,$ami);
-return $requete[0];
+function fun_get_inscription_commission($co,$commission,$ami) {
+	$requete = $co->prepare("SELECT * FROM gerer WHERE N_COMMISSION=:idC AND N_AMIS=:idA");
+	$requete->execute(array("idC" => $commission,
+							"idA" => $ami));
+	return $requete->fetchAll();
 }
+
+function fun_get_all_fonctions($co) {
+	$requete = $co->query('SELECT * FROM fonction');
+	return $requete->fetchAll();
+	}
 
 /**
 	-> Permet de récupérer l'ensemble des dîners
@@ -106,8 +117,8 @@ function fun_delete_diner_participant($co, $diner, $participant){
 	-> Permet d'inscrire un ami et ses convives
 	-> pour un diner voulu dans "participer" 
  */
-function fun_set_inscrire_diner ($co, $numAmi, $numDiner, $nbInvite) {
-	$requete = $co->query('INSERT INTO participer VALUES(:NumAmi, :NumDiner, :NbInvite)');
+function fun_inscrire_diner ($co, $numAmi, $numDiner, $nbInvite) {
+	$requete = $co->prepare('INSERT INTO participer VALUES(:NumAmi, :NumDiner, :NbInvite)');
 	$requete->execute(array(
 							"NumAmi" => $numAmi,
 							"NumDiner" => $numDiner,
@@ -128,8 +139,52 @@ function fun_insert_diner ($co, $date, $lieu, $rue, $ville, $prix) {
 }
 
 function fun_insert_cotisation ($co, $valeur) {
-	$requete = $co->prepare("INSERT INTO parametre VALUES(:montant)");
+	$requete = $co->prepare("INSERT INTO parametre (MT_COTISATION) VALUES(:montant)");
 	$requete->execute(array("montant" => $valeur));	
 }
+/**
+	-> GESTION AMIS
+*/
+function fun_suppr_amis ($co, $valeur) {
+	$resultat = $co->prepare('DELETE FROM amis WHERE N_AMIS = :numForm');
+	$resultat -> execute (array ('numForm' =>$valeur));
+}
 
+function fun_afficher_amis ($co) {
+	$resultat = $co->query('SELECT * FROM amis');
+	return $resultat->fetchAll();
+}
+
+function fun_modif_amis ($co, $val1,$val2,$val3,$val4,$val5,$val6,$val7,$val8,$val9,$val10,$val11,$val12,$val13) {
+$resultat = $co->prepare('UPDATE amis SET N_FONCTION =:F_FONC, NOM_AMIS =:F_NAMIS,
+	PRENOM_AMIS =:F_PAMIS, TEL_FIX_AMIS =:F_TELF, TEL_PORTABLE_AMIS =:F_TELF, 
+	EMAIL_AMIS =:F_EMAIL, RUE_AMIS =:F_RUE, 
+	VILLE_AMIS=:F_VILLE, DATE_ENTREE_AMIS=:F_DATE, 
+	MT_VERSE =:F_MT, PARRAIN_1 = :F_PARRAIN1, PARRAIN_2 = :F_PARRAIN2 
+	WHERE N_AMIS = :F_NOAMIS');
+$resultat -> execute (array (
+	'F_NOAMIS' =>$val1,
+	'F_FONC' =>$val2,
+	'F_NAMIS' =>$val3,
+	'F_PAMIS' =>$val4,
+	'F_TELF' =>$val5,
+	'F_TELP' =>$val6,
+	'F_EMAIL' =>$val7,
+	'F_RUE' =>$val8,
+	'F_VILLE' =>$val9,
+	'F_DATE' =>$val10,
+	'F_MT' =>$val11,
+	'F_PARRAIN1' =>$val12,
+	'F_PARRAIN2' =>$val13
+));
+}
+
+function fun_afficher_ami ($co, $valeur) {
+$resultat = $co->prepare('SELECT * FROM AMIS WHERE N_AMIS =:NAMIS');
+$resultat -> execute (array ('NAMIS' =>$valeur));
+return $resultat->fetch();
+}
+/**
+	-> FIN GESTION AMIS
+*/
 ?> 

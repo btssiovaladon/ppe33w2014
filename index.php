@@ -1,11 +1,37 @@
 <html>
 	<head>
+<<<<<<< HEAD
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	 
 		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
 		<link rel="stylesheet" type="text/css" href="../css/message_box.css">
+=======
+		<meta charset="iso-8859-15">
+		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
+<<<<<<< HEAD
+		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
+		<link rel="stylesheet" type="text/css" href="../css/message_box.css">
+
+=======
+		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	 
+		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
+		<link rel="stylesheet" type="text/css" href="../css/message_box.css">
+		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">
+		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
+		<link rel="stylesheet" type="text/css" href="../css/message_box.css">
+>>>>>>> bda888a2537dcc3deb174b0c1b836b942604f09a
+		<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	 
+		<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
+		<link rel="stylesheet" type="text/css" href="css/message_box.css">
+<<<<<<< HEAD
+
+=======
+>>>>>>> bda888a2537dcc3deb174b0c1b836b942604f09a
+>>>>>>> e0c95d05a33cc266e3c5cdfd4d8bddce2af0f74f
 		<title>Le club des AMIS</title>
 	</head>
 
@@ -21,7 +47,23 @@
 		
 		<center><div id="corps">
 			<br/>
+			
 			<?php
+			
+			if(isset($_GET['ajax'])){
+				?>
+				
+				<div id="ajax">
+				
+				<?php
+					include("ajax/".$_GET['ajax']);
+				?>
+				
+				</div>
+			
+			<?php
+			
+			}
 			if(!isset($_GET["page"]))
 			{
 				include ("include/inc_accueil.php");
