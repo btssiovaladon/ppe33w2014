@@ -1,8 +1,14 @@
+<<<<<<< HEAD
+<?php
+	 include ("page/form_connexion.php"); 
+?>
+=======
 
 <?php
 	 include ("page/form_connexion.php"); 
 ?>
 
+>>>>>>> bda888a2537dcc3deb174b0c1b836b942604f09a
 				<div class="main">
 					<div class="border-top">
 						<div class="wrapper">

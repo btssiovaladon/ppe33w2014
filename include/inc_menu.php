@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 
+>>>>>>> bda888a2537dcc3deb174b0c1b836b942604f09a
 							<nav>
 								<ul class="menu">
 									<li><a class="active" href="">Gestion Amis</a></li>
