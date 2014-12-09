@@ -26,6 +26,8 @@ else{
 				//Permet de definir la connexion PDO
 				$co = fun_connexion_pdo();?>
 			<div id="entete">
+					
+				<?php include ("include/inc_entete.php"); ?>
 				<?php include ("include/inc_entete.php"); ?>
 			
 			
