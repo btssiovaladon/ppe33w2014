@@ -1,5 +1,6 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="js/autoc.js"></script>
 
 <form action="">
 	<table>
@@ -11,52 +12,40 @@
 	<tr><td>Adresse :<input type="text" name="rue"/></td></tr>
 	<tr><td>Ville :<input type="text" name="ville"/></td></tr>
 	<tr><td>Date d'entrée :<input type="text" name="date_entée"/></td></tr>
-	<tr><td>Liste des personnes :
+	<tr><td>Montant versé :<input type="text" name="montant"/></td></tr>
+	<tr><td>Parrain 1:
 	<select id="listePers" size="1">
-		<option align="left"><input type="text" id ="NOM_AMIS" name="NOM_AMIS" onkeyup="javascript:envoipersajax(this.value)"></option>	
+		<td align="left"><input type="text" id ="parrain1" name="NOM_AMIS" onkeyup="javascript:envoipersajax(this.value)"></td>	
 	</select></td></tr>
+	<tr><td>Parrain 2:
+	<select id="listePers2" size="1">
+		<td align="left"><input type="text" id ="parrain2" name="NOM_AMIS" onkeyup="javascript:envoipersajax2(this.value)"></td>	
+	</select></td></tr>
+	<tr><td> <input type="submit" name="submit" value="Ajouter"> </td>
+	
 	
 	<?php 
+	if(isset($_POST['submit'])){
+	$requete = $co->prepare('INSERT INTO amis VALUES(:NOM_AMIS, :PRENOM_AMIS, :TEL_FIX_AMIS, :TEL_PORTABLE_AMIS, :EMAIL_AMIS, :RUE_AMIS, :VILLE_AMIS, :DATE_ENTREE_AMIS, :MT_VERSE, :PARRAIN_1, :PARRAIN_2 )');
+	$requete->execute(array(
+							"NOM_AMIS" => $nom,
+							"PRENOM_AMIS" => $prenom,
+							"TEL_FIXE_AMIS" => $tel,
+							"TEL_PORTABLE_AMIS" => $telport,
+							"EMAIL_AMIS" => $email,
+							"RUE_AMIS" => $rue,
+							"VILLE_AMIS" => $ville,
+							"DATE_ENTREE_AMIS" => $date_entrée,
+							"MT_VERSE" => $montant,
+ 							"PARRAIN_1" => $parrain1,
+							"PARRAIN_2" => $parrain2));
+	
+	}
 	?>
+	<script>
+			success: function () {
+				alert("Insertion reussie !");
+            },
+				
+	</script>
 </form>
-<script type='text/javascript'>
-function envoipersajax(nom)
-	{
-	var requete= $.ajax({
-	url: "index.php?ajax=getparrain.php",
-	type:"POST",
-	data:"NOM_AMIS=" + escape(nom),
-	//cache: false, // pas de mise en cache
-	success:function(){ 
-		// si la requête est un succès
-		var selectPers=document.getElementById("listePers");
-		if(requete.responseText=='')
-		{
-		selectPers.length=0;
-		//document.getElementById("prix").innerHTML='';
-		}
-		else
-		{
-		var personne,i,nb,pers;
-		personne=requete.responseText.split('/');
-
-		nb=personne.length;
-		// nb contient le nombre de lignes du tabl
-		
-		selectPers.length=nb;
-		for (i=0; i<nb; i++)
-		{
-		pers=personne[i].split('*'); //
-		selectPers.options[i].value=pers[0]; //
-		selectPers.options[i].text=pers[1]+ " " +pers[2];
-		}
-		selectPers.options[0].selected='selected';
-		}
-	},
-	error:function(){
-		
-	}
-	});
-	return;
-	}
-</script>
