@@ -1,7 +1,12 @@
 <?php
 if(isset($_POST["valider"])){
+<<<<<<< HEAD
+fun_modif_amis ($co, $_POST['F_NOAMIS'], $_POST['F_FONC'], $_POST['F_NAMIS'], $_POST['F_PAMIS'], $_POST['F_TELF'], $_POST['F_TELP'], $_POST['F_EMAIL'], $_POST['F_RUE'], $_POST['F_VILLE'], $_POST['F_DATE'], $_POST['F_MT'], $_POST['F_PARRAIN1'], $_POST['F_PARRAIN2']);
+header("Location: index.php?page=form_afficher_amis.php");
+=======
 fun_modif_amis($co, $_POST['F_NOAMIS'], $_POST['F_NAMIS'], $_POST['F_FONC'], $_POST['F_PAMIS'], $_POST['F_TELF'], $_POST['F_TELP'], $_POST['F_EMAIL'], $_POST['F_RUE'], $_POST['F_VILLE'], $_POST['F_DATE'], $_POST['F_MT'], $_POST['F_PARRAIN1'], $_POST['F_PARRAIN2']);
 //header("Location: index.php?page=form_afficher_amis.php");
+>>>>>>> 5712d2f36547117f114727195361bc54fd982614
 //réactualise la page
 }
 $ligne =fun_afficher_ami ($co, $_GET['N_AMIS']);

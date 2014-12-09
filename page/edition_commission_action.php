@@ -12,7 +12,7 @@ $actions = fun_obtenir_action_commission($co, $_GET['commission']);
 
 $write = "";
 
-$write .= "<h2>Actions réalisé par ".$commission['NOM_COMMISSION']."</h2>";
+$write .= "<h2>Actions réalisées par ".$commission['NOM_COMMISSION']."</h2>";
 
 $write .= "<table>";
 	$write .= "<tr>";

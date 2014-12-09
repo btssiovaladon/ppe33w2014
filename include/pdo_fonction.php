@@ -185,7 +185,57 @@ $resultat -> execute (array ('NAMIS' =>$valeur));
 return $resultat->fetch();
 }
 
+<<<<<<< HEAD
 /**
 	-> FIN GESTION AMIS
 */
+=======
+/**
+	-> FIN GESTION AMIS
+*/
+
+
+
+/**
+	-> FIN GESTION AMIS
+*/
+
+function fun_obtenir_action_commission($co, $commission){
+
+	$resultat = 
+	$co->prepare("SELECT * FROM action a
+					INNER JOIN amis am ON a.N_AMIS = am.N_AMIS
+					INNER JOIN gerer ge ON ge.N_AMIS = am.N_AMIS
+					INNER JOIN commission c ON ge.N_COMMISSION = c.N_COMMISSION
+					WHERE c.N_COMMISSION = :com");
+	$resultat->execute(array('com' => $commission));
+	
+	return $resultat->fetchAll();
+
+}
+
+function fun_obtenir_commission($co, $commission){
+
+	$resultat = $co->prepare("SELECT * FROM commission WHERE N_COMMISSION = :com");
+	$resultat->execute(array("com" => $commission));
+	
+	return $resultat->fetch();
+
+}
+
+function fun_obtenir_chef_action($co, $act){
+	$resultat = $co -> prepare('SELECT amis.*, action.N_AMIS as n_chef FROM amis inner join action on amis.N_AMIS = n_chef WHERE action.N_ACTION = :id');
+	$resultat -> execute(array('id' => $act));
+
+	return $resultat->fetch();
+}
+
+function fun_obtenir_participants_action($co, $act){
+	$resultat = $co -> prepare('SELECT amis.*, participant.N_AMIS as n_participant FROM amis inner join participant on amis.N_AMIS = n_participant WHERE participant.N_ACTION = :id');
+	$resultat -> execute(array('id' => $act));
+
+	return $resultat->fetch();
+}
+
+>>>>>>> 23d402fd402eb55191c47101a3522011a067b86d
 ?> 
