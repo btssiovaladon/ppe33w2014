@@ -6,7 +6,7 @@
 
 	//REQUETES
 	$afficher_amis = $co->query('SELECT * FROM amis');
-	$adresse_mail = $co->query('SELECT EMAIL_AMIS FROM AMIS WHERE EMAIL_AMIS= /** L'amis qui est connecté **/');
+	$adresse_mail = $co->query('SELECT EMAIL_AMIS FROM AMIS WHERE EMAIL_AMIS= /** Lamis qui est connecté **/');
 ?>
 
 <!-- FORM SAISIE MONTANT -->
@@ -21,7 +21,7 @@
 		</select>
 		<input type="text" name="valeur_montant" id="valeur_montant"placeholder="Saisir le montant" size="47"/>
 		<input type="submit" name="btn_valider" id="btn_valider"/>
-	</form> 
+	</form>
 <!-- -->
 
 <!-- CONTROLE ET ENVOIE -->
