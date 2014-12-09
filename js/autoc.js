@@ -1,7 +1,7 @@
 function envoipersajax(nom)
 	{
 	var requete= $.ajax({
-	url: "getparrain.php",
+	url: "page/getparrain.php",
 	type:"POST",
 	data:"NOM_AMIS=" + escape(nom),
 	//cache: false, // pas de mise en cache

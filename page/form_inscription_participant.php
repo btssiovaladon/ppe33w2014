@@ -1,4 +1,7 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src = "js/autoc.js"></script>;
 <?php
+
 /*try
 {
     $bdd = new PDO('mysql:host=localhost;dbname=clubamis', 'root', '');
@@ -9,7 +12,7 @@ catch (Exception $e)
 }*/
 //include("include/pdo_fonction.php");
 $chef = fun_obtenir_chef_action($co, $_GET["id"]);
-$participant = fun_obtenir_participants_action($co, $_GET["id"]);
+$participants = fun_obtenir_participants_action($co, $_GET["id"]);
 ?>
 
 <label>Tableau des amis avec leurs Rôles</label><br/>
@@ -29,11 +32,11 @@ $participant = fun_obtenir_participants_action($co, $_GET["id"]);
 <?php
 
 
-while($ligne=$resultat->fetch()){
+foreach($participants as $ligne){
 ?>
 <TR>
-		<TD> <?php echo $participant["NOM_AMIS"];?></TD>
-		<TD> <?php echo $participant["PRENOM_AMIS"];?></TD>
+		<TD> <?php echo $ligne["NOM_AMIS"];?></TD>
+		<TD> <?php echo $ligne["PRENOM_AMIS"];?></TD>
 		<TD> <?php echo "participant";?></TD>
 </TR>
 <?php } ?>
@@ -44,32 +47,13 @@ while($ligne=$resultat->fetch()){
 <br>
 <form method="post" action="">
  
-       <label for="ami">Sélectionner un ami</label><br/>
-    
-<select name="ami" id="ami">
-	   
-<?php
-
-$reponse = $bdd->query('SELECT * FROM amis');
- 
-while ($donnees = $reponse->fetch())
-{
-?>
-     <option value="1"><?php echo $donnees['NOM_AMIS']. ' ' .$donnees['PRENOM_AMIS']; ?> </option>
-<?php
-}
- 
-$reponse->closeCursor();
- 
-?>
-</select>
+<tr><td>Liste des personnes :
+	<select id="listePers" size="1">
+		<option align="left"><input type="text" id ="NOM_AMIS" name="NOM_AMIS" onkeyup="javascript:envoipersajax(this.value)"></option>	
+	</select></td></tr>
 <br><br>
-<label><u>Rôle de l'ami</u></label>
-<br>
-Chef:<input type="radio" name="chef" onclick="action()">
-Participant:<input type="radio" name="participant" onclick="action()">
 
-<input type ="button" value ="Ajouter"  onclick=ajouterligne() />
+<input type ="button" value ="Ajouter"  onclick="ajouterligne()" />
 
  
 </form>
@@ -77,12 +61,12 @@ Participant:<input type="radio" name="participant" onclick="action()">
 <script type="text/javascript">
 function ajouterligne()
 {
-var ligne =document.getElementId("tableauAction").InsertRow(-1);
+var ligne =document.getElementById("tableauAction").insertRow(-1);
 var colonne0=ligne.insertCell(0);
-colonne0.innerHTML=document.getElementById("Nom").
+colonne0.innerHTML="claude";
 var colonne1=ligne.insertCell(1);
-colonne1.innerHTML=document.getElementById("Prenom");
+colonne1.innerHTML="re-claude";
 var colonne2=ligne.insertCell(2);
-colonne2.innerHTML=document.getElementById("Roles");
+colonne2.innerHTML="participant";
 }
 </script>
