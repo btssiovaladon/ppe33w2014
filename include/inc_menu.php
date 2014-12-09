@@ -4,8 +4,7 @@
 		<li><a href="#">Gestion Amis</a>
 			<ul>
 				<li><a href="index.php?page=creation_ami.php">Creation d'amis</a></li>
-				<li><a href="index.php?page=form_modif_ami.php">Modification amis</a></li>
-				<li><a href="index.php?page=form_afficher_amis.php">Suppression amis</a></li>
+				<li><a href="index.php?page=form_afficher_amis.php">Afficher amis</a></li>
 			</ul>
 		</li>
 		<li><a href="#">Gestion Actions</a>
