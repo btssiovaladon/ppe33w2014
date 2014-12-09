@@ -20,11 +20,19 @@
 			?>
 			
 			<td><?php echo $d["DATE_DINER"]; ?> </td>
+<<<<<<< HEAD
+			<td> <a href="?page=form_inscription_diner.php&id=<?php echo $d['N_DINER']; ?>">Ajouter un participant</a> </td>
+			<td> <a href="?page=form_consultation_diner.php&id=<?php echo $d['N_DINER']; ?>">Consultation</a> </td>
+			<td> <a href="?page=form_modification_diner.php?id=<?php echo $d['N_DINER']; ?>">Modification</a> </td>
+			<td> <a href="?page=form_suppression_diner.php?id=<?php echo $d['N_DINER']; ?>">Suppression</a> </td>
+			<td> <a href="?page=form_edition_diner.php?id=<?php echo $d['N_DINER']; ?>">Edition</a> </td>
+=======
 			<td> <a href="?page=form_inscription_diner.php&id=<?php echo $d['N_DINER']; ?>"><img src="images/ajouter.png"/><br/>Ajouter un participant</a> </td>
 			<td> <a href="?page=form_consultation_diner.php&id=<?php echo $d['N_DINER']; ?>"><img src="images/consulter.png"/><br/>Consultation</a> </td>
 			<td> <a href="?page=form_modification_diner.php?id=<?php echo $d['N_DINER']; ?>"><img width="16px" height="16px" src="images/page2-img2.png"/><br/>Modification</a> </td>
 			<td> <a href="?page=form_suppression_diner.php?id=<?php echo $d['N_DINER']; ?>"><img src="images/supprimer.png"/><br/>Suppression</a> </td>
 			<td> <a href="page/form_edition_participant_diner.php?id=<?php echo $d['N_DINER']; ?>" title="Création d'un PDF"><img src="images/pdf.png"/><br/>Edition</a> </td>
+>>>>>>> 5712d2f36547117f114727195361bc54fd982614
 			
 			<?php }} ?>
 		</tr>

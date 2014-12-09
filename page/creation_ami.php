@@ -13,7 +13,7 @@
 	<tr><td>Date d'entrée :<input type="text" name="date_entée"/></td></tr>
 	<tr><td>Liste des personnes :
 	<select id="listePers" size="1">
-		<td align="left"><input type="text" id ="NOM_AMIS" name="NOM_AMIS" onkeyup="javascript:envoipersajax(this.value)"></td>	
+		<option align="left"><input type="text" id ="NOM_AMIS" name="NOM_AMIS" onkeyup="javascript:envoipersajax(this.value)"></option>	
 	</select></td></tr>
 	
 	<?php 

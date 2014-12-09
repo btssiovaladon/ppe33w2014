@@ -23,9 +23,6 @@ $ligne =fun_afficher_ami ($co, $_GET['N_AMIS']);
 		<label>Parrain2 : </label><input type="text" name="F_PARRAIN2" value="<?php echo $ligne["PARRAIN_2"];?>"/> <BR />
 
 <input type="submit" name="valider" value="valider">
+<a href="index.php?page=form_afficher_amis.php"> Retour </a>
 </fieldset>
 </form>
-	<?php
-?>
-<!-- dès qu'il n'y a plus de ligne, on ferme la variable resultat -->
-</table>

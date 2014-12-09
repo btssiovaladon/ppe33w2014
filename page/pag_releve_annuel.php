@@ -1,7 +1,8 @@
 <?php 
 	
-    include ("../include/pdo_fonction.php"); 
-			
+    include ("../include/fonction.php"); 
+	include ("../include/pdo_fonction.php"); 
+	
     //Permet de definir la connexion PDO
     $co = fun_connexion_pdo();
 	$amis = fun_select_releve($co); 
@@ -31,7 +32,7 @@
 			{
             ?>
 				<tr>
-					<td> <?php echo $ligne['DATE_DINER']; ?> </td> <!-- DATE REPAS-->
+					<td> <?php echo date_us_vers_fr($ligne['DATE_DINER']); ?> </td> <!-- DATE REPAS-->
 					<td> <?php echo $ligne['NOMBRE_INVITE']; ?> </td> <!-- NB INVITE-->
 					<td> <?php echo $ligne['PRIX_REPAS']." euros"; ?> </td> <!-- PRIX-->
 					<td> <?php echo $ligne['TOTAL']." euros"; ?> </td> <!-- TOTAL-->
@@ -63,6 +64,5 @@
 		<br/>
 		<br/>
 	<?php
-	$ligne = $amis->fetch();
 	} 
 	?>

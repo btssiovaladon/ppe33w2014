@@ -2,17 +2,17 @@
 
 ob_start();
 
-include("../include/pdo_fonction.php");
-include("../include/fonction.php");
+include_once("include/pdo_fonction.php");
+include_once("include/fonction.php");
 
 $co = fun_connexion_pdo();
 
-$commission = fun_obtenir_commission($co, $_GET['commission']);
-$actions = fun_obtenir_action_commission($co, $_GET['commission']);
+$commission = fun_obtenir_commission($co, $_POST['commission']);
+$actions = fun_obtenir_action_commission($co, $_POST['commission']);
 
 $write = "";
 
-$write .= "<h2>Actions réalisé par ".$commission['NOM_COMMISSION']."</h2>";
+$write .= "<h2>Actions réalisées par ".$commission['NOM_COMMISSION']."</h2>";
 
 $write .= "<table>";
 	$write .= "<tr>";
@@ -38,7 +38,7 @@ echo utf8_encode($write);
 
 $contenu = ob_get_clean();
 
-include("../include/html2pdf/html2pdf_v4.03/html2pdf.class.php");
+include("include/html2pdf/html2pdf_v4.03/html2pdf.class.php");
 
 try{
 

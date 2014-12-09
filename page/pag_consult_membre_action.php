@@ -1,5 +1,5 @@
 <h3>
-	Liste des participants pour l'action <?php echo $_POST[]?>
+	Liste des participants pour l'action <?php echo $_GET['id']?>
 </h3>
 <table border="1">
 	<tr>
@@ -10,13 +10,17 @@
 			Nom
 		</th>
 		<th>
-			Prenom
+			Prénom
 		</th>
 		<th>
-			Role
+			Rôle
 		</th>
 		<th>
-			Supprimer de l'activite
+			Supprimer de l'activité
 		</th>
+	</tr>
+	
+	<tr>
+	
 	</tr>
 </table>

@@ -56,7 +56,6 @@
 				$write .= "</tr>";
 		$write .= "</table>";
 		$write .= "</page>";
-		$ligne = $amis->fetch();
 	} 
 	
 echo utf8_encode($write);
