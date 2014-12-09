@@ -3,13 +3,8 @@
 	//Id diner : $_GET['id']
 	
 	$pageActu = "?page=".$_GET['page']."&id=".$_GET['id'];
-	
-	if(isset($_GET['modifier'])){
-	
-		fun_update_diner_participant($co, $_GET['id'], $_GET['modif'], $_POST['nbInvite'.$_GET['modif']]);
-	
-	}
-	else if(isset($_GET['suppr'])){
+
+	if(isset($_GET['suppr'])){
 		
 		?>
 		
