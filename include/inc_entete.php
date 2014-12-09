@@ -2,10 +2,6 @@
 	 include ("page/form_connexion.php"); 
 ?>
 
-<?php
-	 include ("page/form_connexion.php"); 
-?>
-
 				<div class="main">
 					<div class="border-top">
 						<div class="wrapper">
