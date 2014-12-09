@@ -1,3 +1,46 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+function envoipersajax(nom)
+	{
+	var requete= $.ajax({
+	url: "getparrain.php",
+	type:"POST",
+	data:"NOM_AMIS=" + escape(nom),
+	//cache: false, // pas de mise en cache
+	success:function(){ 
+		// si la requête est un succès
+		var selectPers=document.getElementById("afficher_amis");
+		if(requete.responseText=='')
+		{
+		selectPers.length=0;
+		//document.getElementById("prix").innerHTML='';
+		}
+		else
+		{
+		var personne,i,nb,pers;
+		personne=requete.responseText.split('/');
+
+		nb=personne.length;
+		// nb contient le nombre de lignes du tabl
+		
+		selectPers.length=nb;
+		for (i=0; i<nb; i++)
+		{
+		pers=personne[i].split('*'); //
+		selectPers.options[i].value=pers[0]; //
+		selectPers.options[i].text=pers[1]+ " " +pers[2];
+		}
+		selectPers.options[0].selected='selected';
+		}
+	},
+	error:function(){
+		alert("perdu");
+	}
+	});
+	return;
+	}
+</script>
+
 <?php
 	//INCLUDE
 	include ('../include/pdo_fonction.php');
@@ -11,13 +54,10 @@
 
 <!-- FORM SAISIE MONTANT -->
 	<form name="form_saisie_montant" action="#" method="post">
-		<select>
-			<?php foreach ($afficher_amis as $ligne) { ?>
-				<option value="<?php echo $ligne['N_AMIS']; ?>">
-					<?php echo $ligne['NOM_AMIS']. " " .$ligne['PRENOM_AMIS']; ?>
-				</option>
-			<?php } ?>
-			
+		<select name="afficher_amis" id="afficher_amis" size="1">
+			<option align="left">
+				<input type="text" id ="NOM_AMIS" name="NOM_AMIS" onkeyup="javascript:envoipersajax(this.value)">
+			</option>
 		</select>
 		<input type="text" name="valeur_montant" id="valeur_montant"placeholder="Saisir le montant" size="47"/>
 		<input type="submit" name="btn_valider" id="btn_valider"/>
@@ -42,7 +82,7 @@
 		}
 		else
 		{
-			$requete = $co->prepare('INSERT INTO amis (MT_VERSE) VALUES(:valeur_montant) WHERE N_AMIS = /** L'amis qui est connecté **/');
+			$requete = $co->prepare('INSERT INTO amis (MT_VERSE) VALUES(:valeur_montant) WHERE N_AMIS = /** Lamis qui est connecté **/');
 			$requete->execute(array(
 							"valeur_montant" => $montant));
 

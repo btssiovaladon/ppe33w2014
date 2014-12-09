@@ -10,7 +10,7 @@ else{
 	?>
 	<html>
 		<head>
-			<meta charset="utf-8">
+			<meta charset="iso-8859-15">
 			<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
 			<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
 			<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	 
@@ -26,9 +26,11 @@ else{
 				//Permet de definir la connexion PDO
 				$co = fun_connexion_pdo();?>
 			<div id="entete">
+					
 				<?php include ("include/inc_entete.php"); ?>
+				<?php include ("include/inc_menu.php"); ?>
 			
-			
+			</div>
 			<center><div id="corps">
 				<br/>
 				
