@@ -161,9 +161,6 @@ function fun_suppr_amis ($co, $valeur) {
 	$resultat -> execute (array ('numForm' =>$valeur));
 }
 
-=======
->>>>>>> FETCH_HEAD
-
 function fun_afficher_amis ($co) {
 	$resultat = $co->query('SELECT * FROM amis');
 	return $resultat->fetchAll();
