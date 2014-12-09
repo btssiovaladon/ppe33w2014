@@ -4,7 +4,7 @@
 
 ?>
 
-<form action="page/edition_commission_action.php" target="_blank" method="get">
+<form action="?pdf=edition_commission_action.php" target="_blank" method="post">
 
 	<select name="commission">
 		<?php

@@ -5,6 +5,11 @@ if(isset($_GET['ajax'])){
 	include("ajax/".$_GET['ajax']);
 
 }
+else if(isset($_GET['pdf'])){
+	
+	include("page/".$_GET['pdf']);
+
+}
 else{
 
 	?>
