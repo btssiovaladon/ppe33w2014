@@ -1,3 +1,6 @@
+<?php
+	 include ("page/form_connexion.php"); 
+?>
 
 <?php
 	 include ("page/form_connexion.php"); 
@@ -10,10 +13,13 @@
 							<?php include("include/inc_menu.php");?>
 						</div>
 					</div>
-					<div class="slider-bg">
+<?php
+if(!isset($_GET['page'])){
+?>					<div class="slider-bg">
 						<div class="slider">
 							
                             
 						</div>
 					</div>
+<?php } ?>
 				</div>
