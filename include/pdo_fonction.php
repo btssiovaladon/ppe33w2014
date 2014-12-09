@@ -192,6 +192,21 @@ $resultat -> execute (array ('NAMIS' =>$valeur));
 return $resultat->fetch();
 }
 
+function fun_select_releve ($co)
+{
+	$requete = $co->query("SELECT A.N_AMIS, NOM_AMIS, PRENOM_AMIS, EMAIL_AMIS, NOMBRE_INVITE, LIEU_DINER, DATE_DINER, PRIX_REPAS, NOMBRE_INVITE*PRIX_REPAS AS TOTAL FROM amis A 
+	INNER JOIN participer P ON A.N_AMIS=P.N_AMIS 
+	INNER JOIN diner D ON P.N_DINER=D.N_DINER 
+	ORDER BY NOM_AMIS");
+	return $requete;
+}
+
+function fun_select_coti ($co)
+{
+	$requete = $co->query("SELECT MT_COTISATION FROM parametre");
+	return $requete;
+}
+
 /**
 	-> FIN GESTION AMIS
 */
