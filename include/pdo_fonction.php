@@ -160,6 +160,7 @@ function fun_suppr_amis ($co, $valeur) {
 	$resultat = $co->prepare('DELETE FROM amis WHERE N_AMIS = :numForm');
 	$resultat -> execute (array ('numForm' =>$valeur));
 }
+<<<<<<< HEAD
 
 function fun_afficher_amis ($co) {
 	$resultat = $co->query('SELECT * FROM amis');
@@ -195,6 +196,8 @@ $resultat = $co->prepare('SELECT * FROM AMIS WHERE N_AMIS =:NAMIS');
 $resultat -> execute (array ('NAMIS' =>$valeur));
 return $resultat->fetch();
 }
+=======
+>>>>>>> 8e9043dbaf9d43d09e78d6dbda558bc01ddc81cb
 /**
 	-> FIN GESTION AMIS
 */
