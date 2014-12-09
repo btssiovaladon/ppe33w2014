@@ -28,8 +28,9 @@ else{
 			<div id="entete">
 					
 				<?php include ("include/inc_entete.php"); ?>
+				<?php include ("include/inc_menu.php"); ?>
 			
-			
+			</div>
 			<center><div id="corps">
 				<br/>
 				
