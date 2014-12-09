@@ -94,6 +94,11 @@ function fun_get_all_ami ($co) {
 	return $requete->fetchAll();
 }
 
+function fun_get_all_ami_completion ($co){
+	$requete = $co->query("SELECT PRENOM_AMIS FROM amis WHERE PRENOM_AMIS LIKE '". $q ."%' LIMIT 0, 10") or die(print_r($co->errorInfo()));
+	return $requete;
+}
+ 
 /**
 	-> Permet de mettre à jour le nombre d'invités d'un diner
 	
@@ -143,4 +148,7 @@ function fun_insert_cotisation ($co, $valeur) {
 	$requete->execute(array("montant" => $valeur));	
 }
 
+
+
 ?> 
+
