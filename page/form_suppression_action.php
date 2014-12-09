@@ -1,6 +1,5 @@
 <?php
 include ('../include/pdo_fonction.php');
-$co = fun_connexion_pdo();
 // SI users connecté
 	if(isset($_GET['num'])){
 		$sql='delete from action where N_ACTION = '.$_GET['num'].';';
