@@ -1,4 +1,4 @@
-a, abbr, acronym, address, applet, article, aside, audio,
+﻿a, abbr, acronym, address, applet, article, aside, audio,
 b, blockquote, big, body,
 center, canvas, caption, cite, code, command,
 datalist, dd, del, details, dfn, dl, div, dt, 
@@ -32,11 +32,6 @@ ol, ul {
 }
 blockquote, q {
 	quotes: none;
-}
-table, table td { 
-	padding:0;
-	border:none;
-	border-collapse:collapse;
 }
 img {
 	vertical-align:top; 
