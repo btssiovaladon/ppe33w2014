@@ -5,9 +5,11 @@
     //Permet de definir la connexion PDO
     $co = fun_connexion_pdo();
 	$amis = fun_select_releve($co); 
-	ob_start();
 
 	$ligne = $amis->fetch();
+	?> 
+	<a href="index.php?page=pag_releve_annuel_pdf.php"> Imprimer </a>
+	<?php 
 	while($ligne)
 	{
 		$id = $ligne['N_AMIS'];
@@ -25,7 +27,7 @@
 				<td>TOTAL</td>
 			</tr>
 			<?php
-			while($id == $ligne['N_AMIS'])
+			while($ligne && $id == $ligne['N_AMIS'])
 			{
             ?>
 				<tr>
@@ -61,10 +63,6 @@
 		<br/>
 		<br/>
 	<?php
+	$ligne = $amis->fetch();
 	} 
-	$content=ob_get_clean();
-	require_once(dirname(__FILE__).'../include/html2pdf/html2pdf_v4.03/html2pdf.class.php');
-    $html2pdf = new HTML2PDF('P','A4','fr');
-    $html2pdf->WriteHTML($content);
-    $html2pdf->Output('releve.pdf');
 	?>
