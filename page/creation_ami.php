@@ -15,7 +15,11 @@
 	<tr><td>Montant versé :<input type="text" name="montant"/></td></tr>
 	<tr><td>Parrain 1:
 	<select id="listePers" size="1">
+<<<<<<< HEAD
 		<td align="left"><input type="text" id ="parrain1" name="NOM_AMIS" onkeyup="javascript:envoipersajax(this.value)"></td>	
+=======
+		<option align="left"><input type="text" id ="NOM_AMIS" name="NOM_AMIS" onkeyup="javascript:envoipersajax(this.value)"></option>	
+>>>>>>> a2b07b156bbdbbbcbbee97acd02b86957a177406
 	</select></td></tr>
 	<tr><td>Parrain 2:
 	<select id="listePers2" size="1">

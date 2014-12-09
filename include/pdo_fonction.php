@@ -191,6 +191,13 @@ $resultat = $co->prepare('SELECT * FROM AMIS WHERE N_AMIS =:NAMIS');
 $resultat -> execute (array ('NAMIS' =>$valeur));
 return $resultat->fetch();
 }
+
+/**
+	-> FIN GESTION AMIS
+*/
+
+
+
 /**
 	-> FIN GESTION AMIS
 */
@@ -219,16 +226,22 @@ function fun_obtenir_commission($co, $commission){
 }
 
 function fun_obtenir_chef_action($co, $act){
-	$resultat = $co -> prepare('SELECT amis.*, action.N_AMIS as n_chef FROM amis inner join action on amis.N_AMIS = n_chef WHERE action.N_ACTION = :id');
+	$resultat = $co -> prepare('SELECT amis.*, action.N_AMIS as n_chef FROM amis inner join action on amis.N_AMIS = action.N_AMIS WHERE action.N_ACTION = :id');
 	$resultat -> execute(array('id' => $act));
 
 	return $resultat->fetch();
 }
 
 function fun_obtenir_participants_action($co, $act){
-	$resultat = $co -> prepare('SELECT amis.*, participant.N_AMIS as n_participant FROM amis inner join participant on amis.N_AMIS = n_participant WHERE participant.N_ACTION = :id');
+	$resultat = $co -> prepare('SELECT amis.*, participant.N_AMIS as n_participant FROM amis inner join participant on amis.N_AMIS = participant.N_AMIS WHERE participant.N_ACTION = :id');
 	$resultat -> execute(array('id' => $act));
 
-	return $resultat->fetch();
+	return $resultat->fetchAll();
 }
+
+function fun_supprimer_participant_action($co,$act,$mem){
+	$resultat = $co -> prepare('DELETE FROM PARTICIPANT WHERE N_AMIS = :mem AND N_ACTION = :act');
+	$resultat -> execute(array('mem'=>$mem, 'act'=>$act));
+}
+
 ?> 

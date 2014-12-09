@@ -7,4 +7,4 @@ function date_us_vers_fr($date){
 
 }
 
-?>
+?> 
