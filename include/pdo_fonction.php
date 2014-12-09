@@ -185,16 +185,6 @@ $resultat -> execute (array ('NAMIS' =>$valeur));
 return $resultat->fetch();
 }
 
-<<<<<<< HEAD
-/**
-	-> FIN GESTION AMIS
-*/
-=======
-/**
-	-> FIN GESTION AMIS
-*/
-
-
 
 /**
 	-> FIN GESTION AMIS
@@ -236,6 +226,4 @@ function fun_obtenir_participants_action($co, $act){
 
 	return $resultat->fetch();
 }
-
->>>>>>> 23d402fd402eb55191c47101a3522011a067b86d
 ?> 
