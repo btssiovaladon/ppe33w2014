@@ -1,6 +1,13 @@
+<?php if(isset($_GET['membre'])){
+fun_supprimer_participant_action($co,$_GET['id'],$_GET['membre']);
+header('location: ?page=pag_actmembre_consult.php&id='.$_GET['id']);
+}
+?>
 <h3>
-	Liste des participants pour l'action <?php echo $_GET['id']?>
+	Liste des participants pour l'action <?php echo $_GET['id'];?>
 </h3>
+
+<?php $id = $_GET['id'];?>
 <table  border = '2'>
 <tr>
 	<th>Code</th>
@@ -10,8 +17,7 @@
 	<th>Supprimer de l'activit&eacute;</th>
 </tr>
 <?php 
-$ligne1 = fun_obtenir_chef_action($co, $_GET['id']);
-
+$ligne1 = fun_obtenir_chef_action($co, $id);
 ?>
 <tr>
 	<td><?php echo $ligne1['N_AMIS'];?></td>
@@ -23,10 +29,10 @@ $ligne1 = fun_obtenir_chef_action($co, $_GET['id']);
 			<option>participant</option>
 		</select>
 	</td>
-	<td><a href=''>X</a></td>
+	<td></td>
 </tr>
-<?php $resultat = fun_obtenir_participants_action($co, $_GET['id']);
-foreach($resultat as $ligne2){
+<?php $resultat = fun_obtenir_participants_action($co, $id);
+		foreach($resultat as $ligne2){
 ?>
 <tr>
 	<td><?php echo $ligne2['N_AMIS'];?></td>
@@ -38,7 +44,9 @@ foreach($resultat as $ligne2){
 			<option selected='selected'>participant</option>
 		</select>
 	</td>
-	<td><a href=''>X</a></td>
+	<td><a href="?page=pag_actmembre_consult.php&id=<?php echo $id;?>&membre=<?php echo $ligne2['N_AMIS'];?>">X</a></td>
 </tr>
-<?php } ?>
+<?php
+}
+?>
 </table>
