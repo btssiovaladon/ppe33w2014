@@ -5,6 +5,11 @@ if(isset($_GET['ajax'])){
 	include("ajax/".$_GET['ajax']);
 
 }
+else if(isset($_GET['pdf'])){
+	
+	include("page/".$_GET['pdf']);
+
+}
 else{
 
 	?>
@@ -26,10 +31,7 @@ else{
 				//Permet de definir la connexion PDO
 				$co = fun_connexion_pdo();?>
 			<div id="entete">
-					
 				<?php include ("include/inc_entete.php"); ?>
-				<?php include ("include/inc_menu.php"); ?>
-			
 			</div>
 			<center><div id="corps">
 				<br/>

@@ -3,15 +3,15 @@
 	<ul id="menu">
 		<li><a href="#">Gestion Amis</a>
 			<ul>
-				<li><a href="#">Creation d'amis</a></li>
-				<li><a href="#">Modification / Suppression amis</a></li>
+				<li><a href="index.php?page=creation_ami.php">Creation d'amis</a></li>
+				<li><a href="index.php?page=form_afficher_amis.php">Afficher amis</a></li>
 			</ul>
 		</li>
 		<li><a href="#">Gestion Actions</a>
 			<ul>
-				<li><a href="#">Saisie d’une action</a></li>
-				<li><a href="#">Modification d’une action</a></li>
-				<li><a href="#">Suppression d’une action</a></li>
+				<li><a href="index.php?page=form_saisie_action.php">Saisie d’une action</a></li>
+				<li><a href="index.php?page=form_modification_action.php">Modification d’une action</a></li>
+				<li><a href="index.php?page=form_afficher_amis.php">Suppression d’une action</a></li>
 				<li><a href="#">Inscription d’un AMI à une action</a></li>
 				<li><a href="#">Edition de la liste des participants par action</a></li>
 				<li><a href="#">Consultation des membres de l’action</a></li>

@@ -1,6 +1,7 @@
 
 <?php
-	 include ("page/form_connexion.php"); 
+	include ("page/form_connexion.php"); 
+	include ("include/inc_menu.php"); 
 ?>
 
 

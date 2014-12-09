@@ -1,8 +1,8 @@
 <?php
-if(isset($_GET['N_AMIS'])){
+if(isset($_GET['action']) && $_GET['action']="suppr"){
 fun_suppr_amis($co,$_GET['N_AMIS']);
 //requête : on supprime de la table Arbitre la ligne où les variables correspondent
-header("Location: index.php?page=form_afficher_amis.php");
+//header("Location: index.php?page=form_afficher_amis.php");
 //une fois la suppression faite, on actualise la page
 }
 $resultat =fun_afficher_amis ($co);
@@ -44,7 +44,7 @@ $resultat =fun_afficher_amis ($co);
 		<td> <?php echo $ligne["PARRAIN_2"];?> </td> <!-- L2C3  -->
 <!-- Affichage des champs de la table dans les différentes colonnes -->
 <td> <a href="index.php?page=form_modif_ami.php&N_AMIS=<?php echo $ligne["N_AMIS"];?>"> Modifier </a> </td> 
-<td> <a onclick="return(confirm('Etes vous sur de vouloir supprimer cette personne ?'))" href="index.php?page=form_afficher_amis.php&N_AMIS=<?php echo $ligne["N_AMIS"];?>"> Suprimer </a> </td> 
+<td> <a onclick="return(confirm('Etes vous sur de vouloir supprimer cette personne ?'))" href="index.php?page=form_afficher_amis.php&N_AMIS=<?php echo $ligne["N_AMIS"];?>&action=suppr"> Suprimer </a> </td> 
 	</tr>
 	<?php
 	}

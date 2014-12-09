@@ -155,27 +155,23 @@ function fun_afficher_amis ($co) {
 	return $resultat->fetchAll();
 }
 
-function fun_modif_amis ($co, $val1,$val2,$val3,$val4,$val5,$val6,$val7,$val8,$val9,$val10,$val11,$val12,$val13) {
-$resultat = $co->prepare('UPDATE amis SET N_FONCTION =:F_FONC, NOM_AMIS =:F_NAMIS,
-	PRENOM_AMIS =:F_PAMIS, TEL_FIX_AMIS =:F_TELF, TEL_PORTABLE_AMIS =:F_TELF, 
-	EMAIL_AMIS =:F_EMAIL, RUE_AMIS =:F_RUE, 
-	VILLE_AMIS=:F_VILLE, DATE_ENTREE_AMIS=:F_DATE, 
-	MT_VERSE =:F_MT, PARRAIN_1 = :F_PARRAIN1, PARRAIN_2 = :F_PARRAIN2 
+function fun_modif_amis ($co, $val1, $val2, $val3, $val4, $val5, $val6, $val7, $val8, $val9, $val10, $val11, $val12, $val13) {
+$resultat = $co->prepare('UPDATE amis SET NOM_AMIS =:F_NAMIS, N_FONCTION =:F_FONC, PRENOM_AMIS =:F_PAMIS, TEL_FIX_AMIS =:F_TELF, TEL_PORTABLE_AMIS =:F_TELP, EMAIL_AMIS =:F_EMAIL, RUE_AMIS =:F_RUE, VILLE_AMIS =:F_VILLE, DATE_ENTREE_AMIS =:F_DATE, MT_VERSE =:F_MT, PARRAIN_1 =:F_PARRAIN1, PARRAIN_2 =:F_PARRAIN2
 	WHERE N_AMIS = :F_NOAMIS');
 $resultat -> execute (array (
-	'F_NOAMIS' =>$val1,
-	'F_FONC' =>$val2,
-	'F_NAMIS' =>$val3,
-	'F_PAMIS' =>$val4,
-	'F_TELF' =>$val5,
-	'F_TELP' =>$val6,
-	'F_EMAIL' =>$val7,
-	'F_RUE' =>$val8,
-	'F_VILLE' =>$val9,
-	'F_DATE' =>$val10,
-	'F_MT' =>$val11,
-	'F_PARRAIN1' =>$val12,
-	'F_PARRAIN2' =>$val13
+	'F_NOAMIS' => $val1,
+	'F_NAMIS' => $val2,
+	'F_FONC' => $val3,
+	'F_PAMIS' => $val4,
+	'F_TELF' => $val5,
+	'F_TELP' => $val6,
+	'F_EMAIL' => $val7,
+	'F_RUE' => $val8,
+	'F_VILLE' => $val9,
+	'F_DATE' => $val10,
+	'F_MT' => $val11,
+	'F_PARRAIN1' => $val12,
+	'F_PARRAIN2' => $val13
 ));
 }
 
@@ -185,6 +181,29 @@ $resultat -> execute (array ('NAMIS' =>$valeur));
 return $resultat->fetch();
 }
 
+<<<<<<< HEAD
+=======
+function fun_select_releve ($co)
+{
+	$requete = $co->query("SELECT A.N_AMIS, NOM_AMIS, PRENOM_AMIS, EMAIL_AMIS, NOMBRE_INVITE, LIEU_DINER, DATE_DINER, PRIX_REPAS, NOMBRE_INVITE*PRIX_REPAS AS TOTAL FROM amis A 
+	INNER JOIN participer P ON A.N_AMIS=P.N_AMIS 
+	INNER JOIN diner D ON P.N_DINER=D.N_DINER 
+	ORDER BY NOM_AMIS");
+	return $requete;
+}
+
+function fun_select_coti ($co)
+{
+	$requete = $co->query("SELECT MT_COTISATION FROM parametre");
+	return $requete;
+}
+
+/**
+	-> FIN GESTION AMIS
+*/
+
+
+>>>>>>> da7d6d3098022d160852aea9123f3bbafa035062
 
 /**
 	-> FIN GESTION AMIS
