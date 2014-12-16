@@ -155,6 +155,14 @@ function fun_afficher_amis ($co) {
 	return $resultat->fetchAll();
 }
 
+function fun_afficher_amis_action ($co, $valeur) {
+	$resultat = $co->query('SELECT * FROM amis a INNER JOIN participant p ON a.N_AMIS = p.N_AMIS WHERE N_ACTION =:F_ACTION');
+	$resultat -> execute (array (
+	'F_ACTION' => $valeur
+	));
+	return $resultat->fetchAll();
+}
+
 function fun_modif_amis ($co, $val1, $val2, $val3, $val4, $val5, $val6, $val7, $val8, $val9, $val10, $val11, $val12, $val13) {
 $resultat = $co->prepare('UPDATE amis SET NOM_AMIS =:F_NAMIS, N_FONCTION =:F_FONC, PRENOM_AMIS =:F_PAMIS, TEL_FIX_AMIS =:F_TELF, TEL_PORTABLE_AMIS =:F_TELP, EMAIL_AMIS =:F_EMAIL, RUE_AMIS =:F_RUE, VILLE_AMIS =:F_VILLE, DATE_ENTREE_AMIS =:F_DATE, MT_VERSE =:F_MT, PARRAIN_1 =:F_PARRAIN1, PARRAIN_2 =:F_PARRAIN2
 	WHERE N_AMIS = :F_NOAMIS');
