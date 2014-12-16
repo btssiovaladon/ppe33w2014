@@ -22,7 +22,8 @@
  			$Requete = $connexion->prepare("SELECT * FROM utilisateur WHERE login =:Login AND password =:Password"); // si il y a un résultat, mysql_num_rows() nous donnera alors 1 // si mysql_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
  			$Requete->execute(array(
  									':Login'=>$_POST['login'],
- 									':Password'=>$_POST['password']));
+ 									':Password'=>$_POST['password']
+ 									':Type'=>$_POST['type']));
  			$ligne = $Requete->fetch();
  			if($ligne == 0) 
  			{ 
@@ -32,6 +33,7 @@
  			{ 
  				// la session peut être appelée différement et son contenu aussi peut être autre chose que le pseudo echo "Vous êtes à présent connecté !"; 
  				$_SESSION['login'] = $ligne['login']; 
+ 				$_SESSION['type']=$ligne['type'];
  			} 
  		}
  	}
