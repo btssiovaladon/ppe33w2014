@@ -84,17 +84,6 @@ function fun_get_diner ($co, $num) {
 	$requete->execute(array("id" => $id));
 	return $requete->fetchAll();
  }
- 
- /**
-	-> Permet d'obtenir l'identité du participant
-	-> et ses invités pour un diner choisit ($id)
-	-> Retourne un tableau avec les enregistrements correspondant
- */
- function fun_get_info_participant_diner ($co, $id) {
-	$requete = $co->prepare("SELECT A.N_AMIS, NOM_AMIS, PRENOM_AMIS, NOMBRE_INVITE FROM AMIS AS A INNER JOIN PARTICIPER AS P ON A.N_AMIS = P.N_AMIS WHERE P.N_DINER = :id");
-	$requete->execute(array("id" => $id));
-	return $requete->fetchAll();
- }
 
 /**
 	-> Permet de récupérer l'ensemble des amis
@@ -165,12 +154,17 @@ function fun_suppr_amis ($co, $valeur) {
 	$resultat = $co->prepare('DELETE FROM amis WHERE N_AMIS = :numForm');
 	$resultat -> execute (array ('numForm' =>$valeur));
 }
-/**
-	-> FIN GESTION AMIS
-*/
 
 function fun_afficher_amis ($co) {
 	$resultat = $co->query('SELECT * FROM amis');
+	return $resultat->fetchAll();
+}
+
+function fun_afficher_amis_action ($co, $valeur) {
+	$resultat = $co->prepare('SELECT * FROM amis a INNER JOIN participant p ON a.N_AMIS = p.N_AMIS WHERE N_ACTION =:F_ACTION');
+	$resultat -> execute (array (
+	'F_ACTION' => $valeur
+	));
 	return $resultat->fetchAll();
 }
 
@@ -199,6 +193,27 @@ $resultat = $co->prepare('SELECT * FROM AMIS WHERE N_AMIS =:NAMIS');
 $resultat -> execute (array ('NAMIS' =>$valeur));
 return $resultat->fetch();
 }
+
+function fun_select_releve ($co)
+{
+	$requete = $co->query("SELECT A.N_AMIS, NOM_AMIS, PRENOM_AMIS, EMAIL_AMIS, NOMBRE_INVITE, LIEU_DINER, DATE_DINER, PRIX_REPAS, NOMBRE_INVITE*PRIX_REPAS AS TOTAL FROM amis A 
+	INNER JOIN participer P ON A.N_AMIS=P.N_AMIS 
+	INNER JOIN diner D ON P.N_DINER=D.N_DINER 
+	ORDER BY NOM_AMIS");
+	return $requete;
+}
+
+function fun_select_coti ($co)
+{
+	$requete = $co->query("SELECT MT_COTISATION FROM parametre");
+	return $requete;
+}
+
+/**
+	-> FIN GESTION AMIS
+*/
+
+
 /**
 	-> FIN GESTION AMIS
 */
@@ -227,18 +242,19 @@ function fun_obtenir_commission($co, $commission){
 }
 
 function fun_obtenir_chef_action($co, $act){
-	$resultat = $co -> prepare('SELECT amis.*, action.N_AMIS as n_chef FROM amis inner join action on amis.N_AMIS = n_chef WHERE action.N_ACTION = :id');
+	$resultat = $co -> prepare('SELECT amis.*, action.N_AMIS as n_chef FROM amis inner join action on amis.N_AMIS = action.N_AMIS WHERE action.N_ACTION = :id');
 	$resultat -> execute(array('id' => $act));
 
 	return $resultat->fetch();
 }
 
 function fun_obtenir_participants_action($co, $act){
-	$resultat = $co -> prepare('SELECT amis.*, participant.N_AMIS as n_participant FROM amis inner join participant on amis.N_AMIS = n_participant WHERE participant.N_ACTION = :id');
+	$resultat = $co -> prepare('SELECT amis.*, participant.N_AMIS as n_participant FROM amis inner join participant on amis.N_AMIS = participant.N_AMIS WHERE participant.N_ACTION = :id');
 	$resultat -> execute(array('id' => $act));
 
-	return $resultat->fetch();
+	return $resultat->fetchAll();
 }
+
 
 function fun_obtenir_fonction_membre($co){
 
@@ -252,5 +268,10 @@ function fun_Saisie_fonction_membre($co,$idM,$idF){
 	$requete->execute(array(	"idM" => $idM,
 								"idF" => $idF));	
 }
-?> 
 
+function fun_supprimer_participant_action($co,$act,$mem){
+	$resultat = $co -> prepare('DELETE FROM PARTICIPANT WHERE N_AMIS = :mem AND N_ACTION = :act');
+	$resultat -> execute(array('mem'=>$mem, 'act'=>$act));
+}
+
+?> 

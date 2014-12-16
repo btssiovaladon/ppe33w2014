@@ -1,5 +1,5 @@
 /* Getting the new tags to behave */
-article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, nav, output, progress, section, source, video {display:block;}
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header, hgroup, keygen, meter, output, progress, section, source, video {display:block;}
 mark, rp, rt, ruby, summary, time {display:inline;}
 /* Global properties ======================================================== */
 html {width:100%;}
@@ -14,7 +14,7 @@ body {font-family:Arial, Helvetica, sans-serif;font-size:100%;color:#808080;min-
 	line-height:1.846em;
 }
 
-a {color:#43bfff; outline:none;}
+a {color:black; outline:none;}
 a:hover {text-decoration:none;}
 
 .col-1, .col-2 {float:left; width:180px;}
@@ -80,8 +80,6 @@ p {margin-bottom:18px;}
 
 .buttons a:hover {cursor:pointer;}
 
-.menu li a,
-.list-1 li a,
 .link,
 .button,
 h1 a {text-decoration:none;}	
@@ -117,27 +115,156 @@ h1 {
 	}
 	
 /***** menu *****/
-.menu {
-	padding:49px 34px 0 0; 
-	float:right;
-}
-.menu li {
-	float:left; 
+nav{
 	position:relative;
-	padding-right:42px;
+	top:139px;
+	left:250px;
 }
-.menu li:first-child {padding-right:34px;}
-.menu li.last-item {padding-right:0;}
-.menu li a {
-	display:inline-block; 
-	font-size:14px; 
-	line-height:1.2em; 
-	padding-top:16px; 
-	color:#808080; 
-	background:url(../images/menu-marker.gif) center -20px no-repeat;
+#menu{
+        width: 100%;
+        margin: 0;
+        padding: 10px 0 0 0;
+        list-style: none;	
+        -moz-border-radius: 50px;
+        border-radius: 50px;
 }
-.menu li a.active,
-.menu > li > a:hover {background-position:center 0; color:#1c1b18;}
+
+#menu li{
+        float: left;
+        padding: 0 0 2px 0;
+        position: relative;
+}
+
+#menu a{
+        float: left;
+        padding: 0 5px;
+        color: #999;
+        text-transform: uppercase;
+        font: bold 12px/25px Arial, Helvetica;
+        text-decoration: none;
+        text-shadow: 0 1px 0 #000;
+}
+
+#menu li:hover > a{
+        color: #fafafa;
+}
+
+*html #menu li a:hover{ /* IE6 */
+        color: #fafafa;
+}
+
+#menu li:hover > ul{
+        display: block;
+}
+
+/* Sous-menu */
+
+#menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+    position: absolute;
+    top: 27px;
+    left: 0;
+    z-index: 99999;
+    background: #444;
+    background: -moz-linear-gradient(#444, #111);
+    background: -webkit-gradient(linear,left bottom,left top,color-stop(0, #111),color-stop(1, #444));
+    background: -webkit-linear-gradient(#444, #111);
+    background: -o-linear-gradient(#444, #111);
+    background: -ms-linear-gradient(#444, #111);
+    background: linear-gradient(#444, #111);
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+#menu ul li{
+    float: none;
+	height: auto;
+    margin: 0;
+    padding: 0;
+    display: block;
+    -moz-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+    -webkit-box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+    box-shadow: 0 1px 0 #111111, 0 2px 0 #777777;
+}
+
+#menu ul li:last-child{
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#menu ul a{
+	
+    z-index: 99999;
+    padding: 10px;
+    height: 10px;
+    line-height: 1;
+    display: block;
+    white-space: nowrap;
+    float: none;
+    text-transform: none;
+}
+
+*html #menu ul a{ /* IE6 */
+        height: 60px;
+        width: 150px;
+}
+
+*:first-child+html #menu ul a{ /* IE7 */
+        height: 10px;
+        width: 150px;
+}
+
+#menu ul a:hover{
+        background: #0186ba;
+        background: -moz-linear-gradient(#04acec,  #0186ba);
+        background: -webkit-gradient(linear, left top, left bottom, from(#04acec), to(#0186ba));
+        background: -webkit-linear-gradient(#04acec,  #0186ba);
+        background: -o-linear-gradient(#04acec,  #0186ba);
+        background: -ms-linear-gradient(#04acec,  #0186ba);
+        background: linear-gradient(#04acec,  #0186ba);
+}
+
+#menu ul li:first-child a{
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+}
+
+#menu ul li:first-child a:after{
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: -8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 8px solid #444;
+}
+
+#menu ul li:first-child a:hover:after{
+    border-bottom-color: #04acec;
+}
+
+#menu ul li:last-child a{
+    -moz-border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+}
+
+/* Rétablissement du flottement */
+#menu:after{
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+}
 
 .slider-bg {
 	width:960px;
@@ -250,26 +377,6 @@ h6 {color:#1c1b18;}
 	cursor:pointer;
 }
 .button:hover {color:#fff;}
-
-.list-1 li {
-	line-height:20px; 
-	padding:7px 0 8px 20px; 
-	background:url(../images/marker-1.gif) 0 12px no-repeat;
-}
-	.list-1 li a {display:inline-block; color:#808080;}
-	.list-1 li a:hover {color:#43bfff; text-decoration:underline;}
-
-.list-2 li {
-	line-height:20px; 
-	padding:7px 0 8px 20px; 
-	background:url(../images/marker-1.gif) 0 12px no-repeat;
-}
-	.list-2 li a {display:inline-block;}
-
-.link:hover {text-decoration:underline;} 
-
-.link-1 {color:#1c1b18;}
-.link-1:hover {text-decoration:none;} 
 
 dl span {float:left; width:88px; font-weight:bold; color:#1c1b18;}
 

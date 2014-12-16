@@ -1,0 +1,39 @@
+<html>
+<head>
+<script type="text/javascript">
+function getRequeteHttp()
+{
+	// voir paragraphe 1
+}
+function envoyerRequete(url)
+{
+	var requeteHttp=getRequeteHttp();
+	if (requeteHttp==null)
+	{
+		alert("Impossible d'utiliser Ajax sur ce navigateur");
+	}
+	else
+	{
+		requeteHttp.open('GET',url,false);
+		requeteHttp.send(null);
+		if (requeteHttp.readyState==4)
+		{	// la requête est achevée, le résultat a été transmis
+			if (requeteHttp.status==200)
+			{	// la requête s'est correctement déroulée 
+				// (pourrait être 404 pour non trouvé par exemple)
+				alert(requeteHttp.responseText);
+			}
+			else
+			{
+				alert("La requête ne s'est pas correctement exécutée");
+			}
+		}
+	}
+	return;
+}
+</script>
+</head>
+<body>
+	<a href="javascript:envoydsgferRequete('page2.html');">requete</a>
+</body>
+</html>
