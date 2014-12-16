@@ -84,17 +84,6 @@ function fun_get_diner ($co, $num) {
 	$requete->execute(array("id" => $id));
 	return $requete->fetchAll();
  }
- 
- /**
-	-> Permet d'obtenir l'identité du participant
-	-> et ses invités pour un diner choisit ($id)
-	-> Retourne un tableau avec les enregistrements correspondant
- */
- function fun_get_info_participant_diner ($co, $id) {
-	$requete = $co->prepare("SELECT A.N_AMIS, NOM_AMIS, PRENOM_AMIS, NOMBRE_INVITE FROM AMIS AS A INNER JOIN PARTICIPER AS P ON A.N_AMIS = P.N_AMIS WHERE P.N_DINER = :id");
-	$requete->execute(array("id" => $id));
-	return $requete->fetchAll();
- }
 
 /**
 	-> Permet de récupérer l'ensemble des amis
@@ -105,6 +94,11 @@ function fun_get_all_ami ($co) {
 	return $requete->fetchAll();
 }
 
+function fun_get_all_ami_completion ($co){
+	$requete = $co->query("SELECT PRENOM_AMIS FROM amis WHERE PRENOM_AMIS LIKE '". $q ."%' LIMIT 0, 10") or die(print_r($co->errorInfo()));
+	return $requete;
+}
+ 
 /**
 	-> Permet de mettre à jour le nombre d'invités d'un diner
 	
@@ -166,27 +160,31 @@ function fun_afficher_amis ($co) {
 	return $resultat->fetchAll();
 }
 
-function fun_modif_amis ($co, $val1,$val2,$val3,$val4,$val5,$val6,$val7,$val8,$val9,$val10,$val11,$val12,$val13) {
-$resultat = $co->prepare('UPDATE amis SET N_FONCTION =:F_FONC, NOM_AMIS =:F_NAMIS,
-	PRENOM_AMIS =:F_PAMIS, TEL_FIX_AMIS =:F_TELF, TEL_PORTABLE_AMIS =:F_TELF, 
-	EMAIL_AMIS =:F_EMAIL, RUE_AMIS =:F_RUE, 
-	VILLE_AMIS=:F_VILLE, DATE_ENTREE_AMIS=:F_DATE, 
-	MT_VERSE =:F_MT, PARRAIN_1 = :F_PARRAIN1, PARRAIN_2 = :F_PARRAIN2 
+function fun_afficher_amis_action ($co, $valeur) {
+	$resultat = $co->prepare('SELECT * FROM amis a INNER JOIN participant p ON a.N_AMIS = p.N_AMIS WHERE N_ACTION =:F_ACTION');
+	$resultat -> execute (array (
+	'F_ACTION' => $valeur
+	));
+	return $resultat->fetchAll();
+}
+
+function fun_modif_amis ($co, $val1, $val2, $val3, $val4, $val5, $val6, $val7, $val8, $val9, $val10, $val11, $val12, $val13) {
+$resultat = $co->prepare('UPDATE amis SET NOM_AMIS =:F_NAMIS, N_FONCTION =:F_FONC, PRENOM_AMIS =:F_PAMIS, TEL_FIX_AMIS =:F_TELF, TEL_PORTABLE_AMIS =:F_TELP, EMAIL_AMIS =:F_EMAIL, RUE_AMIS =:F_RUE, VILLE_AMIS =:F_VILLE, DATE_ENTREE_AMIS =:F_DATE, MT_VERSE =:F_MT, PARRAIN_1 =:F_PARRAIN1, PARRAIN_2 =:F_PARRAIN2
 	WHERE N_AMIS = :F_NOAMIS');
 $resultat -> execute (array (
-	'F_NOAMIS' =>$val1,
-	'F_FONC' =>$val2,
-	'F_NAMIS' =>$val3,
-	'F_PAMIS' =>$val4,
-	'F_TELF' =>$val5,
-	'F_TELP' =>$val6,
-	'F_EMAIL' =>$val7,
-	'F_RUE' =>$val8,
-	'F_VILLE' =>$val9,
-	'F_DATE' =>$val10,
-	'F_MT' =>$val11,
-	'F_PARRAIN1' =>$val12,
-	'F_PARRAIN2' =>$val13
+	'F_NOAMIS' => $val1,
+	'F_NAMIS' => $val2,
+	'F_FONC' => $val3,
+	'F_PAMIS' => $val4,
+	'F_TELF' => $val5,
+	'F_TELP' => $val6,
+	'F_EMAIL' => $val7,
+	'F_RUE' => $val8,
+	'F_VILLE' => $val9,
+	'F_DATE' => $val10,
+	'F_MT' => $val11,
+	'F_PARRAIN1' => $val12,
+	'F_PARRAIN2' => $val13
 ));
 }
 
@@ -196,10 +194,24 @@ $resultat -> execute (array ('NAMIS' =>$valeur));
 return $resultat->fetch();
 }
 
+function fun_select_releve ($co)
+{
+	$requete = $co->query("SELECT A.N_AMIS, NOM_AMIS, PRENOM_AMIS, EMAIL_AMIS, NOMBRE_INVITE, LIEU_DINER, DATE_DINER, PRIX_REPAS, NOMBRE_INVITE*PRIX_REPAS AS TOTAL FROM amis A 
+	INNER JOIN participer P ON A.N_AMIS=P.N_AMIS 
+	INNER JOIN diner D ON P.N_DINER=D.N_DINER 
+	ORDER BY NOM_AMIS");
+	return $requete;
+}
+
+function fun_select_coti ($co)
+{
+	$requete = $co->query("SELECT MT_COTISATION FROM parametre");
+	return $requete;
+}
+
 /**
 	-> FIN GESTION AMIS
 */
-
 
 
 /**
@@ -241,6 +253,20 @@ function fun_obtenir_participants_action($co, $act){
 	$resultat -> execute(array('id' => $act));
 
 	return $resultat->fetchAll();
+}
+
+
+function fun_obtenir_fonction_membre($co){
+
+	$resultat = $co->query("SELECT * FROM fonction");
+	
+	return $resultat;
+}
+
+function fun_Saisie_fonction_membre($co,$idM,$idF){
+	$requete = $co->prepare("UPDATE amis SET N_FONCTION =:idF WHERE N_AMIS=:idM");	
+	$requete->execute(array(	"idM" => $idM,
+								"idF" => $idF));	
 }
 
 function fun_supprimer_participant_action($co,$act,$mem){

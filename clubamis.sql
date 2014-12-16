@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: 127.0.0.1
--- Généré le: Mar 25 Novembre 2014 à 09:53
+-- Généré le: Mar 25 Novembre 2014 à 08:57
 -- Version du serveur: 5.5.27-log
 -- Version de PHP: 5.4.6
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données: `clubamis`
 --
-CREATE DATABASE `clubamis` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `clubamis`;
 
 -- --------------------------------------------------------
 
@@ -36,7 +34,14 @@ CREATE TABLE IF NOT EXISTS `action` (
   `FONDS_COLLECTES` double(5,2) DEFAULT NULL,
   PRIMARY KEY (`N_ACTION`),
   KEY `I_FK_ACTION_AMIS` (`N_AMIS`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `action`
+--
+
+INSERT INTO `action` (`N_ACTION`, `N_AMIS`, `DATE_DEB_ACTION`, `DUREE_ACTION`, `FONDS_COLLECTES`) VALUES
+(2, 1, '2014-11-11', 2, 2.00);
 
 -- --------------------------------------------------------
 
@@ -62,7 +67,14 @@ CREATE TABLE IF NOT EXISTS `amis` (
   KEY `I_FK_AMIS_FONCTION` (`N_FONCTION`),
   KEY `I_FK_AMIS_AMIS` (`PARRAIN_1`),
   KEY `I_FK_AMIS_AMIS1` (`PARRAIN_2`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `amis`
+--
+
+INSERT INTO `amis` (`N_AMIS`, `N_FONCTION`, `NOM_AMIS`, `PRENOM_AMIS`, `TEL_FIX_AMIS`, `TEL_PORTABLE_AMIS`, `EMAIL_AMIS`, `RUE_AMIS`, `VILLE_AMIS`, `DATE_ENTREE_AMIS`, `MT_VERSE`, `PARRAIN_1`, `PARRAIN_2`) VALUES
+(1, 1, '1', '1', '1', '1', '1', '1', '1', '2014-11-25', 1.00, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -102,7 +114,14 @@ CREATE TABLE IF NOT EXISTS `fonction` (
   `N_FONCTION` int(11) NOT NULL AUTO_INCREMENT,
   `NOM_FONCTION` char(32) DEFAULT NULL,
   PRIMARY KEY (`N_FONCTION`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `fonction`
+--
+
+INSERT INTO `fonction` (`N_FONCTION`, `NOM_FONCTION`) VALUES
+(1, '1');
 
 -- --------------------------------------------------------
 
@@ -160,28 +179,6 @@ CREATE TABLE IF NOT EXISTS `participer` (
   KEY `I_FK_PARTICIPER_AMIS` (`N_AMIS`),
   KEY `I_FK_PARTICIPER_DINER` (`N_DINER`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `utilisateur`
---
-
-CREATE TABLE IF NOT EXISTS `utilisateur` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `login` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
-  `type` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Contenu de la table `utilisateur`
---
-
-INSERT INTO `utilisateur` (`id`, `login`, `password`, `type`) VALUES
-(1, 'abal87', 'abal87', 'aucun');
 
 --
 -- Contraintes pour les tables exportées
