@@ -15,7 +15,7 @@
 				<li><a href="index.php?page=form_inscription_diner.php">Inscription d’un AMI à une action</a></li>
 				<li><a href="#">Edition de la liste des participants par action</a></li>
 				<li><a href="index.php?page=pag_consult_membre_action.php">Consultation des membres de l’action</a></li>
-				<li><a href="#">Edition d’étiquettes</a></li>
+				<li><a href="index.php?page=etiquette.php">Edition d’étiquettes</a></li>
 			</ul>
 		</li>
 		<li><a href="#">Gestion Diners</a>
