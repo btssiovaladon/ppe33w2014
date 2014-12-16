@@ -4,7 +4,7 @@ include ("include/fonction.php");
 
 if(isset($_GET['ajax'])){
 
-	include("ajax/".$_GET['ajax']);
+	include("page/".$_GET['ajax']);
 
 }
 else if(isset($_GET['pdf'])){
