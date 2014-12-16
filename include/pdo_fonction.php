@@ -240,7 +240,17 @@ function fun_obtenir_participants_action($co, $act){
 	return $resultat->fetch();
 }
 
+function fun_obtenir_fonction_membre($co){
 
+	$resultat = $co->query("SELECT * FROM fonction");
+	
+	return $resultat;
+}
 
+function fun_Saisie_fonction_membre($co,$idM,$idF){
+	$requete = $co->prepare("UPDATE amis SET N_FONCTION =:idF WHERE N_AMIS=:idM");	
+	$requete->execute(array(	"idM" => $idM,
+								"idF" => $idF));	
+}
 ?> 
 

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <php session_start(); ?>
 <html>
 	<head>
@@ -20,39 +19,9 @@
 
 
 	</head>
-=======
-<?php
 
-if(isset($_GET['ajax'])){
->>>>>>> 8e9043dbaf9d43d09e78d6dbda558bc01ddc81cb
-
-	include("ajax/".$_GET['ajax']);
-
-}
-else{
-
-	?>
-	<html>
-		<head>
-			<meta charset="utf-8">
-			<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen">
-			<link rel="stylesheet" href="css/style.css" type="text/css" media="screen">
-			<link rel="stylesheet" href="css/grid.css" type="text/css" media="screen">	 
-			<link rel="stylesheet" type="text/css" href="css/charteGraphique.css" />
-			<link rel="stylesheet" type="text/css" href="../css/message_box.css">
-			<title>Le club des AMIS</title>
-		</head>
-
-		<body id="page1">
-				
-				<?php include ("include/pdo_fonction.php"); 
-				
-				//Permet de definir la connexion PDO
-				$co = fun_connexion_pdo();?>
-			<div id="entete">
-				<?php include ("include/inc_entete.php"); ?>
+	<body id="page1">
 			
-<<<<<<< HEAD
 		<?php include ("include/pdo_fonction.php"); 
 			
 		//Permet de definir la connexion PDO
@@ -62,33 +31,25 @@ else{
 		
 		
 		<center><div id="corps">
-=======
-			
-			<center><div id="corps">
-				<br/>
-				
-				<?php
-				if(!isset($_GET["page"]))
-				{
-					include ("include/inc_accueil.php");
-				}
-				else
-				{
-					include ("page/".$_GET["page"]);
-				}
-				?>
-			</div></center>
->>>>>>> 8e9043dbaf9d43d09e78d6dbda558bc01ddc81cb
 			<br/>
-			<div id="pied">
-				<?php
-				include ("include/inc_pied.php");
-				?>
-			</div>
-			
-			
-		</body>
-	</html>
-<?php
-}
-?>
+			<?php
+			if(!isset($_GET["page"]))
+			{
+				include ("include/inc_accueil.php");
+			}
+			else
+			{
+				include ("page/".$_GET["page"]);
+			}
+			?>
+		</div></center>
+		<br/>
+		<div id="pied">
+			<?php
+			include ("include/inc_pied.php");
+			?>
+		</div>
+		
+		
+	</body>
+</html>

@@ -20,7 +20,6 @@
         while($donnees = $resultat->fetch(PDO::FETCH_ASSOC)) {
             // On ajoute les données dans un tableau
             $suggestions['suggestions'][] = $donnees['PRENOM_AMIS'];
-            //$suggestions['suggestions'][]=$donnees['N_AMIS'];
         }
  
         // On renvoie le données au format JSON pour le plugin
