@@ -20,6 +20,7 @@ header('location: ?page=pag_actmembre_consult.php&id='.$_GET['id']);
 </tr>
 <?php 
 $ligne1 = fun_obtenir_chef_action($co, $id);
+if($ligne1['N_AMIS'] != NULL){
 ?>
 <tr>
 	<td><?php echo $ligne1['N_AMIS'];?></td>
@@ -33,7 +34,9 @@ $ligne1 = fun_obtenir_chef_action($co, $id);
 	</td>
 	<td></td>
 </tr>
-<?php $resultat = fun_obtenir_participants_action($co, $id);
+<?php 
+}
+$resultat = fun_obtenir_participants_action($co, $id);
 		foreach($resultat as $ligne2){
 ?>
 <tr>

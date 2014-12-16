@@ -18,10 +18,10 @@ function envoiidpart(amis, action){
 	var requete= $.ajax({
 		url: "?ajax=partVersChef.php",
 		type:"POST",
-		data:"N_ACTION=" + escape(action) + "N_AMIS=" + escape(amis),
+		data: {N_ACTION : escape(action), N_AMIS : escape(amis)},
 		//cache: false, // pas de mise en cache
 		success:function(){ 
-		
+		alert(requete.responseText);
 		},
 		error:function(){
 			alert("perdu");
