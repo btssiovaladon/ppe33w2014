@@ -156,7 +156,7 @@ function fun_afficher_amis ($co) {
 }
 
 function fun_afficher_amis_action ($co, $valeur) {
-	$resultat = $co->query('SELECT * FROM amis a INNER JOIN participant p ON a.N_AMIS = p.N_AMIS WHERE N_ACTION =:F_ACTION');
+	$resultat = $co->prepare('SELECT * FROM amis a INNER JOIN participant p ON a.N_AMIS = p.N_AMIS WHERE N_ACTION =:F_ACTION');
 	$resultat -> execute (array (
 	'F_ACTION' => $valeur
 	));

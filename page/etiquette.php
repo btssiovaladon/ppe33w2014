@@ -16,11 +16,11 @@ $pdf = new PDF_Label('L7163', 'mm', 1, 2);
 $pdf->Open();
 $pdf->AddPage();
 
-$resultat = fun_afficher_amis_action($co, 1);
+$resultat = fun_afficher_amis_action($co, $_GET['id']);
 
 // Print labels
 foreach ($resultat as $ligne){
-    $pdf->Add_Label(sprintf("%s\n%s\n%s\n%s %s %s", $ligne["NOM_AMIS"], 'Immeuble Titi', 'av. fragonard', '06000', 'NICE', 'FRANCE'));
+    $pdf->Add_Label(sprintf("%s %s\n%s\n%s", $ligne["NOM_AMIS"], $ligne["PRENOM_AMIS"], $ligne["RUE_AMIS"], $ligne["VILLE_AMIS"]));
 }
 $pdf->Output();
 ?>
