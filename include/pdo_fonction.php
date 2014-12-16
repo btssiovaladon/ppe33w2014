@@ -84,17 +84,6 @@ function fun_get_diner ($co, $num) {
 	$requete->execute(array("id" => $id));
 	return $requete->fetchAll();
  }
- 
- /**
-	-> Permet d'obtenir l'identité du participant
-	-> et ses invités pour un diner choisit ($id)
-	-> Retourne un tableau avec les enregistrements correspondant
- */
- function fun_get_info_participant_diner ($co, $id) {
-	$requete = $co->prepare("SELECT A.N_AMIS, NOM_AMIS, PRENOM_AMIS, NOMBRE_INVITE FROM AMIS AS A INNER JOIN PARTICIPER AS P ON A.N_AMIS = P.N_AMIS WHERE P.N_DINER = :id");
-	$requete->execute(array("id" => $id));
-	return $requete->fetchAll();
- }
 
 /**
 	-> Permet de récupérer l'ensemble des amis
@@ -210,7 +199,6 @@ function fun_select_coti ($co)
 /**
 	-> FIN GESTION AMIS
 */
-
 
 
 /**
