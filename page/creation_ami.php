@@ -16,11 +16,11 @@
 	<tr><td>Date d'entrée :<input type="text" name="date_entree"/></td></tr>
 	<tr><td>Montant versé :<input type="text" name="montant"/></td></tr>
 	<tr><td>Parrain 1:
-	<select id="listePers" size="1">
+	<select id="listePers" name="listePers" size="1">
 		<td align="left"><input type="text" id ="parrain1" name="NOM_AMIS" onkeyup="javascript:envoipersajax(this.value)"></td>	
 	</select></td></tr>
 	<tr><td>Parrain 2:
-	<select id="listePers2" size="1">
+	<select id="listePers2" name="listePers2" size="1">
 		<td align="left"><input type="text" id ="parrain2" name="NOM_AMIS" onkeyup="javascript:envoipersajax2(this.value)"></td>	
 	</select></td></tr>
 	<tr><td> <input type="submit" name="submit" value="Ajouter"> </td>
