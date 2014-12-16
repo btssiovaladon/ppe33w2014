@@ -1,5 +1,4 @@
 
-<h1><a href="">Le Club des Amis</a></h1>
 
 
 <nav>				
