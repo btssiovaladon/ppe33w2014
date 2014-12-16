@@ -1,6 +1,4 @@
 <?php
-include ('../include/pdo_fonction.php');
-$co=fun_connexion_pdo();
 
 $req=$co->query("select * from amis where NOM_AMIS like '".
 $_POST['NOM_AMIS']."%'"."ORDER by NOM_AMIS,PRENOM_AMIS");
