@@ -1,4 +1,5 @@
 <script src="js/fonction.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <?php if(isset($_GET['membre'])){
 fun_supprimer_participant_action($co,$_GET['id'],$_GET['membre']);
 header('location: ?page=pag_actmembre_consult.php&id='.$_GET['id']);

@@ -5,7 +5,7 @@ function envoiidchef(action){
 		data:"N_ACTION=" + escape(action),
 		//cache: false, // pas de mise en cache
 		success:function(){ 
-			alert("of");
+		alert(requete.responseText);
 		},
 		error:function(){
 			alert("perdu");
@@ -18,7 +18,7 @@ function envoiidpart(amis, action){
 	var requete= $.ajax({
 		url: "ajax/partVersChef.php",
 		type:"POST",
-		data:"N_ACTION=" + escape(action) + "N_AMIS" + escape(amis),
+		data:"N_ACTION=" + escape(action) + "N_AMIS=" + escape(amis),
 		//cache: false, // pas de mise en cache
 		success:function(){ 
 		
