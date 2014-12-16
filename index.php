@@ -1,4 +1,6 @@
 <?php
+include ("include/pdo_fonction.php"); 
+include ("include/fonction.php"); 
 
 if(isset($_GET['ajax'])){
 
@@ -26,7 +28,7 @@ else{
 
 		<body id="page1">
 				
-				<?php include ("include/pdo_fonction.php"); 
+				<?php 
 				
 				//Permet de definir la connexion PDO
 				$co = fun_connexion_pdo();?>

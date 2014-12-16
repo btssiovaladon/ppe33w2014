@@ -258,5 +258,3 @@ function fun_supprimer_participant_action($co,$act,$mem){
 	$resultat = $co -> prepare('DELETE FROM PARTICIPANT WHERE N_AMIS = :mem AND N_ACTION = :act');
 	$resultat -> execute(array('mem'=>$mem, 'act'=>$act));
 }
-
-?> 

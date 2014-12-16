@@ -1,8 +1,6 @@
 <?php 
 	ob_start();
-	
-	include("../include/pdo_fonction.php");
-	include("../include/fonction.php");	
+
 	
     $co = fun_connexion_pdo();
 	$amis = fun_select_releve($co); 
@@ -61,7 +59,7 @@
 echo utf8_encode($write);
 $contenu = ob_get_clean();
 
-include("../include/html2pdf/html2pdf_v4.03/html2pdf.class.php");
+include("./include/html2pdf/html2pdf_v4.03/html2pdf.class.php");
 try{
 	$html2pdf = new HTML2PDF('P', 'A4', 'fr');
 	$html2pdf->setDefaultFont('Arial');
