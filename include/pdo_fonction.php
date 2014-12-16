@@ -94,6 +94,11 @@ function fun_get_all_ami ($co) {
 	return $requete->fetchAll();
 }
 
+function fun_get_all_ami_completion ($co){
+	$requete = $co->query("SELECT PRENOM_AMIS FROM amis WHERE PRENOM_AMIS LIKE '". $q ."%' LIMIT 0, 10") or die(print_r($co->errorInfo()));
+	return $requete;
+}
+ 
 /**
 	-> Permet de mettre à jour le nombre d'invités d'un diner
 	
@@ -152,6 +157,14 @@ function fun_suppr_amis ($co, $valeur) {
 
 function fun_afficher_amis ($co) {
 	$resultat = $co->query('SELECT * FROM amis');
+	return $resultat->fetchAll();
+}
+
+function fun_afficher_amis_action ($co, $valeur) {
+	$resultat = $co->prepare('SELECT * FROM amis a INNER JOIN participant p ON a.N_AMIS = p.N_AMIS WHERE N_ACTION =:F_ACTION');
+	$resultat -> execute (array (
+	'F_ACTION' => $valeur
+	));
 	return $resultat->fetchAll();
 }
 
@@ -242,7 +255,23 @@ function fun_obtenir_participants_action($co, $act){
 	return $resultat->fetchAll();
 }
 
+
+function fun_obtenir_fonction_membre($co){
+
+	$resultat = $co->query("SELECT * FROM fonction");
+	
+	return $resultat;
+}
+
+function fun_Saisie_fonction_membre($co,$idM,$idF){
+	$requete = $co->prepare("UPDATE amis SET N_FONCTION =:idF WHERE N_AMIS=:idM");	
+	$requete->execute(array(	"idM" => $idM,
+								"idF" => $idF));	
+}
+
 function fun_supprimer_participant_action($co,$act,$mem){
 	$resultat = $co -> prepare('DELETE FROM PARTICIPANT WHERE N_AMIS = :mem AND N_ACTION = :act');
 	$resultat -> execute(array('mem'=>$mem, 'act'=>$act));
 }
+
+?> 
