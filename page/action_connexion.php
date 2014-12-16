@@ -1,5 +1,5 @@
 <?php 
- session_start(); // à mettre tout en haut du fichier .php, cette fonction propre à PHP servira à maintenir la $_SESSION 
+ //session_start(); // à mettre tout en haut du fichier .php, cette fonction propre à PHP servira à maintenir la $_SESSION 
  include("../include/pdo_fonction.php");
  if(isset($_POST['connexion'])) 
  { // si le bouton "Connexion" est appuyé // on vérifie que le champ "Pseudo" n'est pas vide // empty vérifie à la fois si le champ est vide et si le champ existe belle et bien (is set) 
