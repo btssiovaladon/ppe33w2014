@@ -274,4 +274,40 @@ function fun_supprimer_participant_action($co,$act,$mem){
 	$resultat -> execute(array('mem'=>$mem, 'act'=>$act));
 }
 
+/*
+	MODIFICATION ET SUPPRESSION DINER
+*/
+
+
+function fun_modif_diner($co, $date, $lieu, $rue, $ville, $prix){
+
+	$requete = $co->prepare("UPDATE diner SET DATE_DINER =:date, LIEU_DINER =:lieu, RUE_DINER =:rue, VILLE_DINER =:ville, PRIX_REPAS =:prix");
+	$requete -> execute(array (
+	'date'  => $date,
+	'lieu' => $lieu,
+	'rue' => $rue,
+	'ville' => $ville,
+	'prix' => $prix ) );
+}
+
+function fun_delete_diner($co, $diner){
+
+	$requete = $co->prepare("DELETE FROM diner WHERE N_DINER =:diner ");
+	$requete->execute(array("diner" => $diner));
+	
+}
+
+function fun_delete_all_participant_diner($co, $diner){
+
+	$requete = $co->prepare("DELETE FROM participer WHERE N_DINER =:diner ");
+	$requete->execute(array("diner" => $diner));
+}
+
+function fun_compte_participant($co, $diner){
+
+	$requete = $co->prepare("SELECT COUNT(*) AS COMPTE FROM participer WHERE N_DINER =:diner");
+	$requete->execute(array("diner" => $diner));
+	return $requete->fetch();
+}
+
 ?> 
