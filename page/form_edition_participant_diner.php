@@ -9,7 +9,11 @@ $co = fun_connexion_pdo();
 
 
 $diner = fun_get_diner ($co, $_GET["id"]);
-$participant = fun_get_info_participant_diner ($co, $_GET["id"]);
+
+echo "<script> alert(".$_GET["id"]."); </script>";
+
+//$participant = fun_get_info_participant_diner($co, $_GET["id"]);
+$participant = fun_get_participant_by_diner($co, $_GET["id"]);
 
 $write = "";
 
