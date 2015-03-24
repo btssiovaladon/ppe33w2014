@@ -38,7 +38,14 @@
  		}
  	}
 
+<<<<<<< HEAD
+} 
+ 		 
+ header('Location: ../index.php');       
+ ?> 
+=======
  } 
  	 
  header('Location: ../index.php');       
  ?> 
+>>>>>>> eb7578624d66cb2474f7d9692e9173b5af6e2996

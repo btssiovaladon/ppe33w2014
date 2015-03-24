@@ -46,7 +46,7 @@ else{
 				?>
 			</div></center>
 			<br/>
-			<div id="pied">
+			<div id="footer">
 				<?php
 				include ("include/inc_pied.php");
 				?>
