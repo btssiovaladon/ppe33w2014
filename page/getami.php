@@ -1,9 +1,11 @@
 <?php
-include ('../include/pdo_fonction.php');
-$co=fun_connexion_pdo();
+<<<<<<< HEAD
+=======
 
-$req=$co->query("select * from amis where NOM_AMIS like '".
-$_POST['NOM_AMIS']."%'"."ORDER by NOM_AMIS,PRENOM_AMIS");
+$co=fun_connexion_pdo();
+>>>>>>> a0ee5759161f97edc0683a3e05917fc325fbbec0
+
+$req=$co->query("select * from amis where NOM_AMIS like '".$_POST['NOM_AMIS']."%'"."ORDER by NOM_AMIS,PRENOM_AMIS");
 
 
 $pers=$req->fetch(PDO::FETCH_ASSOC);

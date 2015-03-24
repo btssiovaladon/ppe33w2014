@@ -1,11 +1,9 @@
 function envoipersajax(nom)
 	{
 	var requete= $.ajax({
-<<<<<<< HEAD
-	url: "page/getparrain.php",
-=======
 	url: "?ajax=getami.php",
->>>>>>> da7d6d3098022d160852aea9123f3bbafa035062
+
+	url: "?ajax=getami.php",
 	type:"POST",
 	data:"NOM_AMIS=" + escape(nom),
 	//cache: false, // pas de mise en cache

@@ -1,5 +1,6 @@
 <?php 
- session_start(); // à mettre tout en haut du fichier .php, cette fonction propre à PHP servira à maintenir la $_SESSION 
+ //session_start(); // à mettre tout en haut du fichier .php, cette fonction propre à PHP servira à maintenir la $_SESSION 
+ include("../include/pdo_fonction.php");
  if(isset($_POST['connexion'])) 
  { // si le bouton "Connexion" est appuyé // on vérifie que le champ "Pseudo" n'est pas vide // empty vérifie à la fois si le champ est vide et si le champ existe belle et bien (is set) 
  	if(empty($_POST['login'])) 
@@ -14,23 +15,37 @@
  		} 
 
  		else 
- 		{ // les champs sont bien posté et pas vide, on sécurise les données entrées par le membre: 
- 			$Login = htmlentities($_POST['login'], ENT_QUOTES); // le htmlentities() passera les guillement en entités HTML, ce qui empéchera les iinjections SQL 
- 			$Password = htmlentities($_POST['password'], ENT_QUOTES); // on fait maintenant la requête dans la base de données pour rechercher si ces données existe et correspondent: 
- 			$Requete = mysql_query("SELECT * FROM utilisateur WHERE login = '".$Login."' AND password = '".$Password."'"); // si il y a un résultat, mysql_num_rows() nous donnera alors 1 // si mysql_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat 
- 			if(mysql_num_rows($Requete) == 0) 
+ 		{ // les champs sont bien posté et pas vide, on sécurise les données entrées par le membre:
+ 		 	$connexion=fun_connexion_pdo(); 
+ 			//$Login = htmlentities($_POST['login'], ENT_QUOTES); // le htmlentities() passera les guillement en entités HTML, ce qui empéchera les iinjections SQL 
+ 			//$Password = htmlentities($_POST['password'], ENT_QUOTES); // on fait maintenant la requête dans la base de données pour rechercher si ces données existe et correspondent: 
+ 			$Requete = $connexion->prepare("SELECT * FROM utilisateur WHERE login =:Login AND password =:Password"); // si il y a un résultat, mysql_num_rows() nous donnera alors 1 // si mysql_num_rows() retourne 0 c'est qu'il a trouvé aucun résultat
+ 			$Requete->execute(array(
+ 									':Login'=>$_POST['login'],
+ 									':Password'=>$_POST['password']
+ 									':Type'=>$_POST['type']));
+ 			$ligne = $Requete->fetch();
+ 			if($ligne == 0) 
  			{ 
  				echo "Le pseudo ou le mot de passe est incorrect, le compte n'a pas été trouvé."; 
  			} 
  			else 
- 			{ // on ouvre la session avec $_SESSION: 
- 					$_SESSION['login'] = $Login; // la session peut être appelée différement et son contenu aussi peut être autre chose que le pseudo echo "Vous êtes à présent connecté !"; 
- 					$_SESSION['idUser']= $idUser; // Id dans la table utilisateur.
+ 			{ 
+ 				// la session peut être appelée différement et son contenu aussi peut être autre chose que le pseudo echo "Vous êtes à présent connecté !"; 
+ 				$_SESSION['login'] = $ligne['login']; 
+ 				$_SESSION['type']=$ligne['type'];
  			} 
  		}
  	}
 
+<<<<<<< HEAD
 } 
  		 
  header('Location: ../index.php');       
  ?> 
+=======
+ } 
+ 	 
+ header('Location: ../index.php');       
+ ?> 
+>>>>>>> eb7578624d66cb2474f7d9692e9173b5af6e2996

@@ -1,10 +1,11 @@
 <?php
 include ("include/pdo_fonction.php"); 
 include ("include/fonction.php"); 
+$co = fun_connexion_pdo();
 
 if(isset($_GET['ajax'])){
 
-	include("ajax/".$_GET['ajax']);
+	include("page/".$_GET['ajax']);
 
 }
 else if(isset($_GET['pdf'])){
@@ -27,11 +28,6 @@ else{
 		</head>
 
 		<body id="page1">
-				
-				<?php 
-				
-				//Permet de definir la connexion PDO
-				$co = fun_connexion_pdo();?>
 			<div id="entete">
 				<?php include ("include/inc_entete.php"); ?>
 			</div>
