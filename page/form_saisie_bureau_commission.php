@@ -1,6 +1,4 @@
 <?php
-	//INCLUDE
-	include ('../include/pdo_fonction.php');
 
 	$co = fun_connexion_pdo();
 

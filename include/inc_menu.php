@@ -3,29 +3,21 @@
 	<ul id="menu">
 		<li><a href="#">Gestion Amis</a>
 			<ul>
-				<li><a href="index.php?page=creation_ami.php">Creation d'amis</a></li>
-				<li><a href="index.php?page=form_afficher_amis.php">Afficher amis</a></li>
+				<li><a href="?page=creation_ami.php">Creation d'amis</a></li>
+				<li><a href="?page=form_afficher_amis.php">Consultation des amis</a></li>
 			</ul>
 		</li>
 		<li><a href="#">Gestion Actions</a>
 			<ul>
-				<li><a href="index.php?page=form_saisie_action.php">Saisie d’une action</a></li>
-				<li><a href="index.php?page=form_modification_action.php">Modification d’une action</a></li>
-				<li><a href="index.php?page=form_afficher_amis.php">Suppression d’une action</a></li>
-				<li><a href="#">Inscription d’un AMI à une action</a></li>
-				<li><a href="#">Edition de la liste des participants par action</a></li>
-				<li><a href="#">Consultation des membres de l’action</a></li>
-				<li><a href="#">Edition d’étiquettes</a></li>
+				<li><a href="?page=form_saisie_action.php">Saisie d’une action</a></li>
+				<li><a href="?page=form_modification_action.php">Modification d'une action</a></li>
+				<li><a href="?page=form_suppression_action.php&num=1">Suppression d'une action</a></li>
 			</ul>
 		</li>
 		<li><a href="#">Gestion Diners</a>
 			<ul>
 				<li><a href="#">Création d’un dîner</a></li>
-				<li><a href="#">Modification/Suppression d’un dîner</a></li>
-				<li><a href="#">Inscription à un dîner</a></li>
-				<li><a href="#">Edition de la liste des participants à un dîner</a></li>
-				<li><a href="#">Edition de la liste des participants par action</a></li>
-				<li><a href="#">Consultation des participants à un dîner</a></li>
+				<li><a href="#">Consultation d’un dîner</a></li>
 			</ul>
 		</li>
 		<li><a href="#">Gestion du bureau / commissions</a>
@@ -33,7 +25,7 @@
 				<li><a href="#">Saisie du bureau</a></li>
 				<li><a href="#">Modification du bureau</a></li>
 				<li><a href="#">Création d’une commission</a></li>
-				<li><a href="#">Saisie du bureau de la commission</a></li>
+				<li><a href="index.php?page=form_saisie_bureau_commission.php">Saisie du bureau de la commission</a></li>
 				<li><a href="#">Inscription d’un AMIS à une commission</a></li>
 				<li><a href="#">Consultation des membres de la commission</a></li>
 				<li><a href="#">Edition pour une commission de la liste des actions</a></li>

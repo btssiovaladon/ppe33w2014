@@ -11,7 +11,7 @@ if(isset($_POST['Modifier'])){
 							':fonds' => $_POST['fond']
 								));
 	
-	echo "<script>alert('Modification effectu\351e.');</script>";
+	echo "<script>alert('Modification effectu\351e.'); document.location.href='?page=form_modification_action.php'; </script>";
 }
 
 
