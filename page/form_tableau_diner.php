@@ -1,17 +1,30 @@
 <?php
 	$diners = fun_get_all_diner($co);
+	
 ?>
 
 <form method="POST" action='index.php?page=form_tableau_diner.php'>
 	<select name="liste_diner">
-		<?php foreach($diners as $d){ ?>
-			<option value="<?php echo $d["N_DINER"]; ?>"><?php echo $d["DATE_DINER"]; ?>	
-		<?php } ?>
+		<?php 
+			foreach($diners as $d) { 
+				if (isset($_POST["liste_diner"]) && $_POST["liste_diner"] == $d["N_DINER"]) {
+		?>
+					<option value="<?php echo $d["N_DINER"]; ?>" selected><?php echo $d["DATE_DINER"]; ?>	
+		<?php 
+				}  // fin if
+				else {
+		?>
+					<option value="<?php echo $d["N_DINER"]; ?>"><?php echo $d["DATE_DINER"]; ?>	
+		<?php
+				}  // else
+			}
+		?>
 	</select>
 	<input type="submit" value="Valider">
 </form>
 
-<?php if(isset($_POST["liste_diner"])){?>
+<?php if (isset($_POST["liste_diner"])){ ?>
+
 	<table border="1" style="text-align: center;">
 		<tr>
 			<?php 
