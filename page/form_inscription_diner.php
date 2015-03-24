@@ -6,7 +6,7 @@
 ?>
 
 <form method="POST" action="index.php?page=form_inscription_diner.php">
-	<table border="1">
+	<table border="0">
 		<tr>
 			<td>
 				<select name="liste_amis">
@@ -29,7 +29,8 @@
 
 <?php 
 	if (isset($_POST['Submit'])) {
-		echo "Variables :".$_POST['liste_amis']." / ".$_POST['num_diner']." / ".$_POST['nb_invite'];
+		echo "<hr> Variables :".$_POST['liste_amis']." / ".$_POST['num_diner']." / ".$_POST['nb_invite'];
+		
 		fun_inscrire_diner($co, $_POST['liste_amis'], $_POST['num_diner'], $_POST['nb_invite']);
 		
 ?>

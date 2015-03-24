@@ -75,7 +75,7 @@ function fun_get_diner ($co, $num) {
 
 /**
 	-> Permet de récupérer les participants à un id
-	-> Retoyrnne un tableau avec les enregistrements correspondant
+	-> Retournne un tableau avec les enregistrements correspondant
  */
  
  function fun_get_participant_by_diner($co, $id){
